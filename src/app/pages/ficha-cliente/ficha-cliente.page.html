@@ -1,0 +1,38 @@
+<ion-header >
+  <ion-toolbar color="dark">
+    <ion-buttons>
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{cliente.nome}}</ion-title>
+
+    <ion-buttons slot="end">
+      <ion-button>Editar  </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <div style="margin-top: 25px; margin-left: 25px;">
+      <strong style="font-size: 20px;">Ficha de cliente</strong>
+    </div>
+
+
+
+
+    <div>
+    <ion-list>
+      <ion-item>
+        <ion-label position="floating">Nome</ion-label>
+        <ion-input id="nome" value="{{cliente?.nome}}"#txtNome></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Contacto</ion-label>
+        <ion-input id="contacto" value="{{cliente?.telemovel}}"#txtTelemovel></ion-input>
+      </ion-item>
+    </ion-list>
+  </div>
+  
+
+
+
+</ion-content>

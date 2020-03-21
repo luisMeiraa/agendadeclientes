@@ -1,0 +1,21 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-back-button></ion-back-button>
+    <ion-title>
+      Clientes
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  <ion-item *ngFor="let cliente of clientes" (click)="navToCliente(cliente)">
+    {{cliente.nome}}
+  </ion-item>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button routerLink="/adicionar-cliente" routerDirection="forward">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+  <!-- <app-explore-container name="Tab 1 page"></app-explore-container> -->
+</ion-content>
