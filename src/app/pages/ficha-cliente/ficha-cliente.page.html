@@ -1,25 +1,45 @@
-<ion-header >
-  <ion-toolbar color="dark">
-    <ion-buttons>
+<ion-header [translucent]="true" no-border  no-shadow>
+  <ion-toolbar style="--border-width: 0 0 0px !important;">
+    <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
-    <ion-title>{{cliente.nome}}</ion-title>
+    <ion-title>Ficha de cliente</ion-title>
 
-    <ion-buttons slot="end">
-      <ion-button>Editar  </ion-button>
-    </ion-buttons>
+   <!--  <ion-buttons slot="end" style="padding-right: 10px;">
+      <ion-icon style="font-size: 28px;" name="pencil-outline"></ion-icon>
+    </ion-buttons> -->
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-    <div style="margin-top: 25px; margin-left: 25px;">
-      <strong style="font-size: 20px;">Ficha de cliente</strong>
+    <div style="background: white;">
+          <ion-row style="padding-top: 15px;">
+            <ion-col size="4"style="padding: 0px;">
+              <ion-avatar style="margin:0 auto;" class="avatarPerfil">
+                <img src="{{cliente?.strBase64Photo}}" onerror="this.src='/assets/img/avatar.jpg';">
+              </ion-avatar>
+            </ion-col>
+            <ion-col size="8" style="padding: 0px;">
+              <ion-row style="margin-left: 10px;">
+                <ion-label  class="labelNome">{{cliente?.nome}}</ion-label>
+              </ion-row>
+              <ion-row style="margin-left: 10px;">
+                <ion-label  class="labelNome">{{cliente?.telemovel}}</ion-label>
+              </ion-row>
+              <ion-row style="margin-left: 10px;margin-top: 30px;">
+              <ion-button >Editar Perfil</ion-button>
+              </ion-row>
+            </ion-col>
+          </ion-row>
+      
+        
+      
+      
+    <hr  style="opacity: 0.65;border-bottom: 0.5px solid rgba(31, 206, 179, 0.65);margin-top: 40px;">
     </div>
 
 
-
-
-    <div>
+   <!--  <div>
     <ion-list>
       <ion-item>
         <ion-label position="floating">Nome</ion-label>
@@ -30,7 +50,7 @@
         <ion-input id="contacto" value="{{cliente?.telemovel}}"#txtTelemovel></ion-input>
       </ion-item>
     </ion-list>
-  </div>
+  </div> -->
   
 
 

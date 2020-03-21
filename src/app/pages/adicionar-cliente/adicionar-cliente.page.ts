@@ -10,8 +10,9 @@ import { NavController, LoadingController } from '@ionic/angular';
 })
 export class AdicionarClientePage implements OnInit {
   cliente: Cliente = {
-    nome: 'test',
-    telemovel:915502360
+    nome: '',
+    telemovel: '',
+    clienteObs:''
   };
   todoId = null;
   constructor(private webservice: ApiService, 

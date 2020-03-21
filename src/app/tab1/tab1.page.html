@@ -9,9 +9,17 @@
 
 <ion-content [fullscreen]="true">
 
-  <ion-item *ngFor="let cliente of clientes" (click)="navToCliente(cliente)">
+  <div style="margin-top: 25px; margin-left: 25px;">
+    <strong style="font-size: 20px;">Lista de clientes</strong>
+  </div>
+
+<ion-card>
+    <ion-item *ngFor="let cliente of clientes" (click)="navToCliente(cliente)" style="margin-top: 10px;font-size: 18px;">
     {{cliente.nome}}
   </ion-item>
+</ion-card>
+
+
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button routerLink="/adicionar-cliente" routerDirection="forward">
       <ion-icon name="add"></ion-icon>

@@ -1,17 +1,44 @@
-<ion-header>
+<ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title></ion-title>
+    <ion-buttons>
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Adicionar cliente</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-list lines="full">
-    <ion-item>
-      <ion-input required type="text" placeholder="Task" [(ngModel)]="cliente.nome"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-input required type="number" placeholder="Priority" [(ngModel)]="cliente.telemovel"></ion-input>
-    </ion-item>
-  </ion-list>
-  <ion-button expand="full" (click)="saveTodo()">Guardar</ion-button>
+
+  <div style="margin-top: 25px; margin-left: 25px;">
+   <strong><p>Aqui pode adicionar o seu cliente</p></strong>
+  </div>
+
+<div style="position: relative;top: 50%;transform: translateY(-75%);">
+<ion-card>
+    <ion-list style="margin: 15px;">
+
+      <ion-item>
+        <ion-label position="floating">Nome do cliente</ion-label>
+        <ion-input required type="text" [(ngModel)]="cliente.nome"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Contacto do cliente</ion-label>
+        <ion-input required type="number" [(ngModel)]="cliente.telemovel"></ion-input>
+      </ion-item>
+
+      <ion-item >
+        <ion-label position="floating">Observações ao cliente</ion-label>
+        <ion-textarea type="text" rows="5"[(ngModel)]="cliente.clienteObs" > </ion-textarea>
+      </ion-item>
+
+
+    </ion-list>
+    <div style="width: 100%; text-align: center;">
+      <ion-button style="margin: 0 auto; margin-top: 30px ;margin-bottom: 15px;" (click)="saveTodo()">Guardar</ion-button>
+    </div>
+  </ion-card>
+</div>
+  
+
+
 </ion-content>

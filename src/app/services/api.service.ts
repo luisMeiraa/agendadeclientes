@@ -6,7 +6,8 @@ import { map } from 'rxjs/operators';
 export interface Cliente {
   id?: string;
   nome: string;
-  telemovel: number;
+  telemovel: string;
+  clienteObs:string
 }
 
 @Injectable({
