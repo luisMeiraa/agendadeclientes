@@ -8,3 +8,11 @@ ion-content  {
     --background:transparent;       
     background-color: transparent  !important;
   }
+
+  ion-header {
+    position: absolute;
+    ion-toolbar {
+      --background: transparent;
+      --ion-color-base: transparent !important;
+    }
+  }

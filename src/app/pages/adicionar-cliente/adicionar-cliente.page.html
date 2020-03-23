@@ -1,21 +1,23 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-buttons>
+<ion-header no-border no-shadow mode="ios">
+  <ion-toolbar color="primary" style="--border-width: 0 0 0px !important;">
+    <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
     <ion-title>Adicionar cliente</ion-title>
   </ion-toolbar>
-</ion-header>
+</ion-header> 
 
 <ion-content>
 
-  <div style="margin-top: 25px; margin-left: 25px;">
-   <strong><p>Aqui pode adicionar o seu cliente</p></strong>
-  </div>
 
 <div style="position: relative;top: 50%;transform: translateY(-75%);">
-<ion-card>
-    <ion-list style="margin: 15px;">
+<ion-card style="margin-top: 30%;">
+    <ion-list style="margin: 15px;padding: 0px;">
+
+      <ion-avatar style="margin: 0 auto; height: 100px; width: 100px;border: 0.5px solid lightpink;">
+        <img src="assets/img/avatar.jpg" onerror="this.src='/assets/img/avatar.jpg';">
+      </ion-avatar>
+
 
       <ion-item>
         <ion-label position="floating">Nome do cliente</ion-label>
@@ -34,7 +36,7 @@
 
     </ion-list>
     <div style="width: 100%; text-align: center;">
-      <ion-button style="margin: 0 auto; margin-top: 30px ;margin-bottom: 15px;" (click)="saveTodo()">Guardar</ion-button>
+      <ion-button style="margin: 0 auto; margin-top: 30px ;margin-bottom: 15px;" (click)="saveCliente()">Guardar</ion-button>
     </div>
   </ion-card>
 </div>

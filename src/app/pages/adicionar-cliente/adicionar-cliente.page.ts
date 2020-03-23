@@ -22,12 +22,13 @@ export class AdicionarClientePage implements OnInit {
 
               ngOnInit() {
                 this.todoId = this.route.snapshot.params['id'];
+                console.log(this.todoId);
                 if (this.todoId)  {
-                  this.loadTodo();
+                  this.loadClientes();
                 }
               }
              
-              async loadTodo() {
+              async loadClientes() {
                 const loading = await this.loadingController.create({
                   message: 'Loading Todo..'
                 });
@@ -39,23 +40,27 @@ export class AdicionarClientePage implements OnInit {
                 });
               }
              
-              async saveTodo() {
-             
+              async saveCliente() {
+                if( this.cliente.nome == '' ||  this.cliente.telemovel == ''){
+                  return
+                }
+
+
                 const loading = await this.loadingController.create({
-                  message: 'Saving Todo..'
+                  message: 'A guardar cliente..'
                 });
                 await loading.present();
-             
-                if (this.todoId) {
+              this.webservice.addTodo(this.cliente).then(() => {
+                    loading.dismiss();
+                    
+                  });
+                /* if (this.todoId) {
                   this.webservice.updateTodo(this.cliente, this.todoId).then(() => {
                     loading.dismiss();
                     
                   });
                 } else {
-                  this.webservice.addTodo(this.cliente).then(() => {
-                    loading.dismiss();
-                    
-                  });
-                }
+                 
+                } */
               } 
 }

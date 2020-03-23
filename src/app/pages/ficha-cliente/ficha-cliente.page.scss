@@ -1,8 +1,14 @@
-ion-content  {
+/* ion-content  {
     --background: linear-gradient(183deg, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);
     
+  } */
+  ion-header {
+    position: absolute;
+    ion-toolbar {
+      --background: transparent;
+      --ion-color-base: transparent !important;
+    }
   }
-  
   
   ion-item, ion-list{
     --background:transparent;       
@@ -11,10 +17,11 @@ ion-content  {
 
 
   .avatarPerfil {
-    max-width: 85px;
-    max-height: 85px;
-    width: 85px;
-    height:85px;
+    margin: 0 auto;
+    max-width: 100px;
+    max-height: 100px;
+    width: 100px;
+    height: 100px;
   }
 
   .labelNome{

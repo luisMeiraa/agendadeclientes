@@ -14,7 +14,7 @@
   </div>
 
 <ion-card>
-    <ion-item *ngFor="let cliente of clientes" (click)="navToCliente(cliente)" style="margin-top: 10px;font-size: 18px;">
+    <ion-item *ngFor="let cliente of clientes" (click)="navToCliente(cliente)">
     {{cliente.nome}}
   </ion-item>
 </ion-card>

@@ -1,19 +1,39 @@
-<ion-header [translucent]="true" no-border  no-shadow>
-  <ion-toolbar style="--border-width: 0 0 0px !important;">
+<ion-header no-border no-shadow mode="ios">
+  <ion-toolbar color="primary" style="--border-width: 0 0 0px !important;">
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
-    <ion-title>Ficha de cliente</ion-title>
-
-   <!--  <ion-buttons slot="end" style="padding-right: 10px;">
-      <ion-icon style="font-size: 28px;" name="pencil-outline"></ion-icon>
-    </ion-buttons> -->
+    <ion-buttons slot="end" >
+      <div style="width: 100%; text-align: right;display: none;" (click)="updateContacto()" id="btnSave">
+          <ion-label style="margin: 10px; color: white;">Guardar</ion-label>
+        </div>
+      <ion-icon (click)="menu($event)"name="ellipsis-vertical-outline"></ion-icon>
+    </ion-buttons>
   </ion-toolbar>
-</ion-header>
+</ion-header> 
 
 <ion-content>
-    <div style="background: white;">
-          <ion-row style="padding-top: 15px;">
+    <div style="background: linear-gradient(183deg, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);height: 40%;">
+      <div style="text-align: center;    padding-top: 15%;">
+        
+        <ion-avatar style="margin:0 auto; border: 0.5px solid lightpink;" class="avatarPerfil">
+        <img src="{{cliente?.strBase64Photo}}" onerror="this.src='/assets/img/avatar.jpg';">
+        </ion-avatar>
+
+        <p  id="lblNome"class="labelNome">{{cliente?.nome}}</p>
+        <ion-input value="{{cliente?.nome}}" id="inpuName" style="display: none;" #txtNome></ion-input>
+
+        <p  id="lblTelemovel" style="font-size: 10px;">{{cliente?.telemovel}}</p>
+        <ion-input value="{{cliente?.telemovel}}" id="inpuTelemovel" style="display: none;" #txtTelemovel></ion-input>
+
+        
+      </div>
+      
+
+
+
+
+         <!--  <ion-row style="padding-top: 15px;">
             <ion-col size="4"style="padding: 0px;">
               <ion-avatar style="margin:0 auto;" class="avatarPerfil">
                 <img src="{{cliente?.strBase64Photo}}" onerror="this.src='/assets/img/avatar.jpg';">
@@ -31,11 +51,11 @@
               </ion-row>
             </ion-col>
           </ion-row>
-      
+       -->
         
       
       
-    <hr  style="opacity: 0.65;border-bottom: 0.5px solid rgba(31, 206, 179, 0.65);margin-top: 40px;">
+   <!--  <hr  style="opacity: 0.65;border-bottom: 0.5px solid rgba(31, 206, 179, 0.65);margin-top: 40px;"> -->
     </div>
 
 
