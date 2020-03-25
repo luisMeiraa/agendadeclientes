@@ -22,7 +22,7 @@ export class Tab1Page {
 
   
   remove(item) {
-    this.webservice.removeTodo(item.id);
+    this.webservice.removeCliente(item.id);
   }
 
   navToCliente(cliente){

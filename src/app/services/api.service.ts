@@ -39,11 +39,11 @@ export class ApiService {
     return this.clientes;
   }
 
-  getTodo(id) {
+  getClient(id) {
     return this.ClientesCollection.doc<Cliente>(id).valueChanges();
   }
  
-  updateTodo(cliente: Cliente, id: string) {
+  updateCliente(cliente: Cliente, id: string) {
     return this.ClientesCollection.doc(id).update(cliente);
   }
  
@@ -51,7 +51,7 @@ export class ApiService {
     return this.ClientesCollection.add(cliente);
   }
  
-  removeTodo(id) {
+  removeCliente(id) {
     return this.ClientesCollection.doc(id).delete();
   }
 }

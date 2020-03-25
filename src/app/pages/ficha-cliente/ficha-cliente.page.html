@@ -3,63 +3,84 @@
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
-    <ion-buttons slot="end" >
+    <ion-buttons slot="end">
+      <div style="display: none;" id="closeEdit" (click)="CancelEdit()">
+        <ion-label style="margin: 10px; color: white;">Cancelar</ion-label>
+      </div>
       <div style="width: 100%; text-align: right;display: none;" (click)="updateContacto()" id="btnSave">
-          <ion-label style="margin: 10px; color: white;">Guardar</ion-label>
-        </div>
-      <ion-icon (click)="menu($event)"name="ellipsis-vertical-outline"></ion-icon>
+        <ion-label style="margin: 10px; color: white;">Guardar</ion-label>
+      </div>
+      <ion-icon (click)="menu($event)" name="ellipsis-vertical-outline"></ion-icon>
     </ion-buttons>
   </ion-toolbar>
-</ion-header> 
+</ion-header>
 
-<ion-content>
-    <div style="background: linear-gradient(183deg, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);height: 40%;">
-      <div style="text-align: center;    padding-top: 15%;">
-        
-        <ion-avatar style="margin:0 auto; border: 0.5px solid lightpink;" class="avatarPerfil">
+<ion-content style="color: white;">
+  <div style="height: 50%;">
+    <div>
+    <div style=" padding-top: 15%;">
+      <ion-avatar style="margin:0 auto; border: 0.5px solid lightpink;" class="avatarPerfil">
         <img src="{{cliente?.strBase64Photo}}" onerror="this.src='/assets/img/avatar.jpg';">
-        </ion-avatar>
+      </ion-avatar>
+    </div>
+    <div style="text-align: center;   " id="showDataContact">
+      
+      <p id="lblNome" class="labelNome" style="margin-top: 15px;">{{cliente?.nome}}</p>
+      <p id="lblTelemovel" style="font-size: 10px;">{{cliente?.telemovel}}</p>
+      <div style="width: 100%; margin: 0 auto;" id="contactCalls">
+        <ion-row>
+          <ion-col style="  text-align: right;" size="6">
 
-        <p  id="lblNome"class="labelNome">{{cliente?.nome}}</p>
-        <ion-input value="{{cliente?.nome}}" id="inpuName" style="display: none;" #txtNome></ion-input>
+            <ion-icon name="call-outline" style="padding: 9px; border: 1px solid lightpink; border-radius: 100px;">
+            </ion-icon>
 
-        <p  id="lblTelemovel" style="font-size: 10px;">{{cliente?.telemovel}}</p>
-        <ion-input value="{{cliente?.telemovel}}" id="inpuTelemovel" style="display: none;" #txtTelemovel></ion-input>
+          </ion-col>
+          <ion-col style="  text-align: left" size="6">
 
-        
+            <ion-icon name="chatbubble-outline"
+              style="padding: 9px; border: 1px solid lightpink; border-radius: 100px;"></ion-icon>
+
+          </ion-col>
+        </ion-row>
       </div>
-      
+
+      <div *ngIf="cliente.clienteObs != ''" id=" lblObservacoes"style="
+      border: 0.5px solid lightpink;width: 72%;margin: 0 auto;text-align: center;background: white; border-radius: 5px;">
+        <p disabled="true" style="line-height: 1.5;font-size: 10px;text-align: center; padding: 10px;margin: 0 auto;">
+          {{cliente?.clienteObs}}</p>
+      </div>
 
 
+<!-- <div>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+    <path fill="#98bae8" fill-opacity="1" 
+    d="M0,256L120,218.7C240,181,480,107,720,106.7C960,107,1200,181,1320,218.7L1440,256L1440,0L1320,0C1200,0,960,0,720,0C480,0,240,0,120,0L0,0Z"></path>
+  </svg>
+</div>
+ -->
+    </div>
+    <div
+      style="background: white;width: 80%;margin: 0 auto;border: 0.5px solid lightpink; margin-top: 15px; border-radius: 10px; display:none"
+      id="divEditContacto">
+      <ion-item id="inpuName">
+        <ion-label position="floating">Editar nome</ion-label>
+        <ion-input value="{{cliente?.nome}}" #txtNome></ion-input>
+      </ion-item>
 
-
-         <!--  <ion-row style="padding-top: 15px;">
-            <ion-col size="4"style="padding: 0px;">
-              <ion-avatar style="margin:0 auto;" class="avatarPerfil">
-                <img src="{{cliente?.strBase64Photo}}" onerror="this.src='/assets/img/avatar.jpg';">
-              </ion-avatar>
-            </ion-col>
-            <ion-col size="8" style="padding: 0px;">
-              <ion-row style="margin-left: 10px;">
-                <ion-label  class="labelNome">{{cliente?.nome}}</ion-label>
-              </ion-row>
-              <ion-row style="margin-left: 10px;">
-                <ion-label  class="labelNome">{{cliente?.telemovel}}</ion-label>
-              </ion-row>
-              <ion-row style="margin-left: 10px;margin-top: 30px;">
-              <ion-button >Editar Perfil</ion-button>
-              </ion-row>
-            </ion-col>
-          </ion-row>
-       -->
-        
-      
-      
-   <!--  <hr  style="opacity: 0.65;border-bottom: 0.5px solid rgba(31, 206, 179, 0.65);margin-top: 40px;"> -->
+      <ion-item id="inpuTelemovel">
+        <ion-label position="floating">Editar contacto</ion-label>
+        <ion-input value="{{cliente?.telemovel}}" #txtTelemovel></ion-input>
+      </ion-item>
+      <ion-item id="inpuObservacoes">
+        <ion-label position="stacked">Editar observações</ion-label>
+        <ion-textarea type="text" rows="5" value="{{cliente?.clienteObs}}" #txtObservacoes></ion-textarea>
+      </ion-item>
     </div>
 
+  </div>
+</div>
 
-   <!--  <div>
+  <!--  <div>
     <ion-list>
       <ion-item>
         <ion-label position="floating">Nome</ion-label>
@@ -71,7 +92,7 @@
       </ion-item>
     </ion-list>
   </div> -->
-  
+
 
 
 

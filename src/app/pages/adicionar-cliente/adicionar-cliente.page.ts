@@ -34,7 +34,7 @@ export class AdicionarClientePage implements OnInit {
                 });
                 await loading.present();
              
-                this.webservice.getTodo(this.todoId).subscribe(res => {
+                this.webservice.getClient(this.todoId).subscribe(res => {
                   loading.dismiss();
                   this.cliente = res;
                 });
@@ -50,17 +50,10 @@ export class AdicionarClientePage implements OnInit {
                   message: 'A guardar cliente..'
                 });
                 await loading.present();
-              this.webservice.addTodo(this.cliente).then(() => {
-                    loading.dismiss();
-                    
-                  });
-                /* if (this.todoId) {
-                  this.webservice.updateTodo(this.cliente, this.todoId).then(() => {
-                    loading.dismiss();
-                    
-                  });
-                } else {
-                 
-                } */
+                
+                this.webservice.addTodo(this.cliente).then(() => {
+                    loading.dismiss();                    
+                });
+                
               } 
 }
