@@ -51,7 +51,7 @@ export class AdicionarClientePage implements OnInit {
                 });
                 await loading.present();
                 
-                this.webservice.addTodo(this.cliente).then(() => {
+                this.webservice.addCliente(this.cliente).then(() => {
                     loading.dismiss();                    
                 });
                 

@@ -8,20 +8,25 @@
 </ion-header> -->
 
 <ion-content [fullscreen]="true">
-
+  <ion-searchbar
+  mode="ios"
+  #searchInput
+  showcancelbutton=""
+  (ionInput)="filterList($event)"
+></ion-searchbar>
   <div style="margin-top: 25px; margin-left: 25px;">
     <strong style="font-size: 20px;">Lista de clientes</strong>
   </div>
 
-<ion-card>
-    <ion-item *ngFor="let cliente of clientes" (click)="navToCliente(cliente)">
+<ion-card style="background: transparent;box-shadow: none;">
+    <ion-item *ngFor="let cliente of filterData" (click)="navToCliente(cliente)">
     {{cliente.nome}}
   </ion-item>
 </ion-card>
 
 
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button routerLink="/adicionar-cliente" routerDirection="forward">
+    <ion-fab-button routerLink="/adicionar-cliente" routerDirection="forward" style="--background: #e3b0ce;">
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
   </ion-fab>

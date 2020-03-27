@@ -1,0 +1,53 @@
+<ion-header no-border no-shadow mode="ios">
+  <ion-toolbar color="primary" style="--border-width: 0 0 0px !important;">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Adicionar marcação</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+<div style="width: 90%;margin: 0 auto;margin-top: 30%;">
+  <div style="width: 100%;">
+    <ion-label >Tratamento</ion-label>
+    <ion-item style="border-radius: 5px;" lines="none" >
+      
+      <ion-input #txtTratamento></ion-input>
+    </ion-item>
+  </div>
+
+  <div style="margin-top: 20px;">
+    <ion-row>
+      <ion-col size="6" style="padding: 0px;padding-right: 5px;">
+        <ion-label position="floating">Data</ion-label>
+        <ion-datetime pickerFormat="DD/MM/YYYY" displayFormat="DD/MM/YYYY" style="border-radius: 5px;background: white;" #txtData ></ion-datetime>
+      </ion-col>
+      <ion-col size="6" style="padding: 0px;padding-left: 5px;">
+        <ion-label position="floating">Hora</ion-label>
+        <ion-datetime displayFormat="HH:mm" style="border-radius: 5px;background: white;" #txtHora></ion-datetime>
+
+      </ion-col>
+    </ion-row>
+  </div>
+
+  <div style="margin-top: 20px;" >
+    <ion-label position="floating">Observações à marcação</ion-label>
+    <ion-textarea rows="5" style="border-radius: 5px;background: white;" #txtObservacoes></ion-textarea>
+
+
+  </div>
+<!--     <div style="    text-align: center;padding-top: 40px;
+    width: 100%;">
+      <ion-button style="--background:#e5b0ce" (click)="addMarcacao()">Adicionar marcação</ion-button>
+    </div> -->
+</div>
+
+
+</ion-content>
+
+<ion-footer class="ion-no-border" no-border no-shadow style="background-color: #9abde9;--border-width: 0 0 0px !important;">
+<ion-toolbar style="--background: #9abde9;--border-width: 0 0 0px !important; text-align: center;">
+    <ion-button style="--background:#e5b0ce" (click)="addMarcacao()">Adicionar marcação</ion-button>
+</ion-toolbar>
+</ion-footer>

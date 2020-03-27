@@ -10,14 +10,14 @@
       <div style="width: 100%; text-align: right;display: none;" (click)="updateContacto()" id="btnSave">
         <ion-label style="margin: 10px; color: white;">Guardar</ion-label>
       </div>
-      <ion-icon (click)="menu($event)" name="ellipsis-vertical-outline"></ion-icon>
+      <ion-icon (click)="menu($event)" name="ellipsis-vertical-outline" style="font-size: 25px;"></ion-icon>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content style="color: white;">
-  <div style="height: 50%;">
-    <div>
+  <div>
+   
     <div style=" padding-top: 15%;">
       <ion-avatar style="margin:0 auto; border: 0.5px solid lightpink;" class="avatarPerfil">
         <img src="{{cliente?.strBase64Photo}}" onerror="this.src='/assets/img/avatar.jpg';">
@@ -29,16 +29,18 @@
       <p id="lblTelemovel" style="font-size: 10px;">{{cliente?.telemovel}}</p>
       <div style="width: 100%; margin: 0 auto;" id="contactCalls">
         <ion-row>
-          <ion-col style="  text-align: right;" size="6">
-
+          <ion-col style="  text-align: right;" size="6" (click)="openSms()">
+           
             <ion-icon name="call-outline" style="padding: 9px; border: 1px solid lightpink; border-radius: 100px;">
             </ion-icon>
 
           </ion-col>
           <ion-col style="  text-align: left" size="6">
-
-            <ion-icon name="chatbubble-outline"
-              style="padding: 9px; border: 1px solid lightpink; border-radius: 100px;"></ion-icon>
+            <a href="tel:{{cliente?.telemovel}}" style="color: black;">
+                <ion-icon name="chatbubble-outline"
+                style="padding: 9px; border: 1px solid lightpink; border-radius: 100px;"></ion-icon>
+            </a>
+            
 
           </ion-col>
         </ion-row>
@@ -50,17 +52,11 @@
           {{cliente?.clienteObs}}</p>
       </div>
 
-
-<!-- <div>
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-    <path fill="#98bae8" fill-opacity="1" 
-    d="M0,256L120,218.7C240,181,480,107,720,106.7C960,107,1200,181,1320,218.7L1440,256L1440,0L1320,0C1200,0,960,0,720,0C480,0,240,0,120,0L0,0Z"></path>
-  </svg>
-</div>
- -->
     </div>
-    <div
-      style="background: white;width: 80%;margin: 0 auto;border: 0.5px solid lightpink; margin-top: 15px; border-radius: 10px; display:none"
+   
+</div>
+ <div
+      style="background: white;width: 90%;margin: 0 auto;border: 0.5px solid lightpink; margin-top: 15px; border-radius: 10px; display:none"
       id="divEditContacto">
       <ion-item id="inpuName">
         <ion-label position="floating">Editar nome</ion-label>
@@ -76,24 +72,48 @@
         <ion-textarea type="text" rows="5" value="{{cliente?.clienteObs}}" #txtObservacoes></ion-textarea>
       </ion-item>
     </div>
+   <!--  <hr  style="opacity: 0.65;border-bottom: 0.5px solid rgba(31, 206, 179, 0.65);margin-top: 40px;"> -->
 
-  </div>
-</div>
+<div id="marcacoes">
+  <ion-card *ngFor="let marcacao of marcacoes" style="margin: 40px;    background: transparent;">
 
-  <!--  <div>
-    <ion-list>
-      <ion-item>
-        <ion-label position="floating">Nome</ion-label>
-        <ion-input id="nome" value="{{cliente?.nome}}"#txtNome></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label position="floating">Contacto</ion-label>
-        <ion-input id="contacto" value="{{cliente?.telemovel}}"#txtTelemovel></ion-input>
-      </ion-item>
-    </ion-list>
-  </div> -->
+    <ion-card-header style="padding: 0px;">
+      <ion-row>
+        <ion-col size="6" class="categoryLabel" style="padding: 0px; text-align: left;">
+          {{marcacao.cliente}}
+        </ion-col>
+        <ion-col size="6" style="padding: 0px; text-align: right;">
+          <ion-row>
+            <ion-col size="8">
+            <p class="descTime">{{marcacao.data}}</p>
+          </ion-col>
+          <ion-col size="4">
+            <p class="descTime">{{marcacao.hora}}</p> 
+          </ion-col>
+          </ion-row>
+          
+        </ion-col>
+      </ion-row>
 
 
 
+    </ion-card-header>
+    <hr style="background: #FF686B;margin: 0px;">
+    <ion-row >
+      <p style="font-style: normal;font-weight: 500;font-size: 14px;line-height: 18px;color: #313131;margin-top: 0px;"><b>{{marcacao.tratamento}}</b></p>
+    </ion-row>
+    
+    <ion-row >
+      <p style="color: #313131;">Observações: {{marcacao.obsevacoes}}</p>
+    </ion-row>
+
+  </ion-card>
+</div> 
 
 </ion-content>
+
+<ion-footer class="ion-no-border" no-border no-shadow style="background-color: #9abde9;--border-width: 0 0 0px !important;">
+  <ion-toolbar style="--background: #9abde9;--border-width: 0 0 0px !important; text-align: center;">
+      <ion-button style="--background:#e5b0ce" (click)="adicionarMarcacao()">Adicionar marcação</ion-button>
+  </ion-toolbar>
+  </ion-footer>

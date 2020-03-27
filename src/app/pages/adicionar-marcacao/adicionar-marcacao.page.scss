@@ -1,14 +1,7 @@
 ion-content  {
     --background: linear-gradient(183deg, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);
     
-  }
-  
-  
-  ion-item, ion-list{
-    --background:transparent;       
-    background-color: transparent  !important;
-  }
-
+  }  
   ion-header {
     position: absolute;
     ion-toolbar {
@@ -16,4 +9,9 @@ ion-content  {
       --ion-color-base: transparent !important;
     }
   }
+  
+/*   ion-item, ion-list{
+    --background:transparent;       
+    background-color: transparent  !important;
+  } */
   

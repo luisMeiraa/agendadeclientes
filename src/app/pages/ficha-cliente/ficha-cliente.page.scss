@@ -30,3 +30,54 @@ ion-content  {
     font-size: 16px;
     line-height: 24px
   }
+
+
+
+  
+  .labelTitle{
+    margin: 50px 0px 0px 41px;
+
+  }
+  .labelTitle ion-label{
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 24px;
+    /* identical to box height */
+    
+    
+    color: black;
+  }
+
+
+
+  ion-card{
+   
+  box-shadow: none;
+  }
+
+
+  .categoryLabel{
+    font-family: Poppins;
+font-style: normal;
+font-weight: 500;
+font-size: 14px;
+line-height: 21px;
+
+color: black;
+  }
+
+
+  .descTime{
+    font-family: Didact Gothic;
+font-style: normal;
+font-weight: normal;
+font-size: 12px;
+line-height: 16px;
+/* identical to box height */
+
+
+
+color: #313131;
+  }

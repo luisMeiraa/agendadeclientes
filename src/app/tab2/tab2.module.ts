@@ -6,10 +6,12 @@ import { FormsModule } from '@angular/forms';
 import { Tab2Page } from './tab2.page';
 import { ExploreContainerComponentModule } from '../explore-container/explore-container.module';
 
+import { NgCalendarModule  } from 'ionic2-calendar';
 @NgModule({
   imports: [
     IonicModule,
     CommonModule,
+    NgCalendarModule,
     FormsModule,
     ExploreContainerComponentModule,
     RouterModule.forChild([{ path: '', component: Tab2Page }])

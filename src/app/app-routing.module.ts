@@ -13,6 +13,10 @@ const routes: Routes = [
   {
     path: 'ficha-cliente',
     loadChildren: () => import('./pages/ficha-cliente/ficha-cliente.module').then( m => m.FichaClientePageModule)
+  },
+  {
+    path: 'adicionar-marcacao',
+    loadChildren: () => import('./pages/adicionar-marcacao/adicionar-marcacao.module').then( m => m.AdicionarMarcacaoPageModule)
   }
 ];
 @NgModule({

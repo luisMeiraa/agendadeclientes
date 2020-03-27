@@ -11,7 +11,7 @@
 
 
 <div style="position: relative;top: 50%;transform: translateY(-75%);">
-<ion-card style="margin-top: 30%;">
+<ion-card style="margin-top: 30%;background: transparent;box-shadow: none;background-color: rgba(238, 174, 202, 0.13);">
     <ion-list style="margin: 15px;padding: 0px;">
 
       <ion-avatar style="margin: 0 auto; height: 100px; width: 100px;border: 0.5px solid lightpink;">
@@ -35,12 +35,18 @@
 
 
     </ion-list>
-    <div style="width: 100%; text-align: center;">
+    <!-- <div style="width: 100%; text-align: center;">
       <ion-button style="margin: 0 auto; margin-top: 30px ;margin-bottom: 15px;" (click)="saveCliente()">Guardar</ion-button>
-    </div>
+    </div> -->
   </ion-card>
 </div>
   
 
 
 </ion-content>
+
+<ion-footer class="ion-no-border" no-border no-shadow style="background-color: #9abde9;--border-width: 0 0 0px !important;">
+  <ion-toolbar style="--background: #9abde9;--border-width: 0 0 0px !important; text-align: center;">
+      <ion-button style="--background:#e5b0ce" (click)="saveCliente()">Guardar</ion-button>
+  </ion-toolbar>
+  </ion-footer>

@@ -1,17 +1,57 @@
-<ion-header [translucent]="true">
+<!-- <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
       Tab 2
     </ion-title>
-  </ion-toolbar>
-</ion-header>
+  </ion-toolbar> 
+</ion-header>-->
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 2</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <ion-row style="margin: 20px;">
+    <ion-col size="4" style="text-align: left;">
+      <ion-button fill="clear" (click)="back()"style="--background: transparent;">
+        <ion-icon name="arrow-back" slot="icon-only" color="dark"></ion-icon>
+      </ion-button>
+  
+    </ion-col>
+      <ion-col size="4"   style="top: 20px;font-family: Poppins;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 14px;
+      line-height: 21px;
+      text-align: center;" (click)="today()">
+        <b>{{ viewTitle }}</b>
+      </ion-col>
+  
+    <!-- Move forward one screen of the slides -->
+    <ion-col size="4"  style="text-align: right;">
+      <ion-button fill="clear" (click)="next()" style="--background: transparent;">
+        <ion-icon name="arrow-forward" slot="icon-only"color="dark"></ion-icon>
+      </ion-button>
+    </ion-col>
+  </ion-row>
+  
+  <calendar 
+    [showEventDetail] = "false"
+  [eventSource]="eventSource" 
+  [calendarMode]="calendar.mode" 
+  [currentDate]="calendar.currentDate"
+  (onEventSelected)="onEventSelected($event)"
+  (onTitleChanged)="onViewTitleChanged($event)"
+  (onTimeSelected)="onTimeSelected($event)" 
+  startHour="6"
+  endHour="20"
+  step="30"
+  startingDayWeek="1">
+  </calendar>
 
-  <app-explore-container name="Tab 2 page"></app-explore-container>
+
+  <ion-card *ngFor="let marcacao of marcacoes">
+    {{marcacao.tratamento}}
+  </ion-card>
+
+
+
+
+
 </ion-content>
