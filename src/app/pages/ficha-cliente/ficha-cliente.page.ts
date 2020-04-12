@@ -30,13 +30,7 @@ export class FichaClientePage implements OnInit {
   }
 
   ionViewWillEnter(){
-    this.webservice.Getmarcacoes().subscribe(res => {
-      this.allData = res;
-      this.marcacoes = this.allData.filter((marcacao) => {
-        return marcacao.id_cliente == this.cliente.id;
-    });
-    console.log(this.marcacoes);
-      });
+  
   }
 
   async menu(event: any){
@@ -60,13 +54,7 @@ async updateContacto(){
   this.cliente.nome = this.txtNome.value;
   this.cliente.telemovel = this.txtTelemovel.value;
   this.cliente.clienteObs = this.txtObservacoes.value;
-  this.webservice.updateCliente(this.cliente, this.cliente.id).then(() => {
-    loading.dismiss();
-    document.getElementById("showDataContact").style.display="block"
-    document.getElementById("divEditContacto").style.display="none"
-    document.getElementById("closeEdit").style.display="none"
-    document.getElementById("btnSave").style.display="none"
-  });
+
 }
 CancelEdit(){
   document.getElementById("showDataContact").style.display="block"

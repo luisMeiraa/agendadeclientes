@@ -19,18 +19,15 @@ export class Tab2Page  {
 
 
 ngOnInit() {
- /*  this.webservice.Getmarcacoes().subscribe(res => {
+/*   this.webservice.Getmarcacoes().subscribe(res => {
     this.marcacoes = res;
     for(var i = 0; i<this.marcacoes.length;i++){
-      this.event.id = this.marcacoes[i].id;
-        this.event.title = this.marcacoes[i].cliente;
-        this.event.desc = this.marcacoes[i].tratamento;
-        this.event.startTime = this.marcacoes[i].fullDate
-        this.event.endTime = this.marcacoes[i].fullDate
-        this.addEvent();
+      this.event.startTime = this.marcacoes[i].data2 + "T13:00:27.25";
+      this.event.endTime = this.marcacoes[i].data2+ "T13:00:27.25";
+      this.addEvent();
     }
     
-    }); */
+    });  */
 }
   event = {
     id:'',
@@ -54,28 +51,16 @@ ngOnInit() {
   
   // Create the right event format and reload source
   addEvent() {
+
     let eventCopy = {
-      id:this.event.id,
       title: this.event.title,
-      startTime:  new Date(this.event.startTime),
+      startTime:  new Date( this.event.startTime),
       endTime: new Date(this.event.endTime),
-      allDay: this.event.allDay,
       desc: this.event.desc
     }
- 
-    if (eventCopy.allDay) {
-      let start = eventCopy.startTime;
-      let end = eventCopy.endTime;
- 
-      eventCopy.startTime = new Date(Date.UTC(start.getUTCFullYear(), start.getUTCMonth(), start.getUTCDate()));
-      eventCopy.endTime = new Date(Date.UTC(end.getUTCFullYear(), end.getUTCMonth(), end.getUTCDate() + 1));
-    }
-    
-  
+    this.eventSource.push(eventCopy);
+    this.myCal.loadEvents();
 
-   this.eventSource.push(eventCopy);
-   this.myCal.loadEvents();
-    //this.resetEvent();
   }
 
 
@@ -122,7 +107,7 @@ async onEventSelected(event) {
  
 public allData:any;
 public ScheduleDate:any;
-// Time slot was clicked
+// Time slot was clicked 
 onTimeSelected(ev) {
   console.log(ev);
 
@@ -142,7 +127,7 @@ onTimeSelected(ev) {
   console.log( this.ScheduleDate);
 
 
-this.webservice.Getmarcacoes().subscribe(res => {
+/* this.webservice.Getmarcacoes().subscribe(res => {
     this.allData = res;
     this.marcacoes = this.allData.filter((marcacao) => {
       console.log(marcacao);
@@ -151,7 +136,7 @@ this.webservice.Getmarcacoes().subscribe(res => {
   console.log(this.marcacoes); 
   
 
-});
+}); */
 
 
 

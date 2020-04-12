@@ -37,13 +37,24 @@ ion-button{
     text-align: center;
     color: #FFFFFF;
 }
-p, ion-label {
+p {
 
     line-height: 22px;
   
     color: #0c0c0c;
   
     margin: 0;
+  }
+
+  ion-label{
+    font-family: Didact Gothic;
+font-style: normal;
+font-weight: normal;
+font-size: 14px;
+line-height: 18px;
+
+color: #313131;
+
   }
   /* devanagari */
   @font-face {

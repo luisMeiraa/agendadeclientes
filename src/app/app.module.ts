@@ -15,7 +15,9 @@ import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { PopoverComponent } from './popover/popover.component';
 import { LOCALE_ID } from '@angular/core';
 import { registerLocaleData } from '@angular/common';
-
+import { HttpClientModule } from '@angular/common/http';
+import { IonicStorageModule } from '@ionic/storage';
+import { UserService } from './services/user.service';
 registerLocaleData(localePt, 'pt-PT');
 
 
@@ -23,14 +25,18 @@ registerLocaleData(localePt, 'pt-PT');
   declarations: [AppComponent,PopoverComponent],
   entryComponents: [PopoverComponent],
   imports: [
+    
     BrowserModule, 
+    HttpClientModule,
     IonicModule.forRoot(), 
+    IonicStorageModule.forRoot(),
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
   ],
   providers: [
     StatusBar,
+    UserService,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     { provide: LOCALE_ID, useValue: 'pt-PT' }

@@ -21,16 +21,16 @@
 
       <ion-item>
         <ion-label position="floating">Nome do cliente</ion-label>
-        <ion-input required type="text" [(ngModel)]="cliente.nome"></ion-input>
+        <ion-input required type="text" #strName></ion-input>
       </ion-item>
       <ion-item>
         <ion-label position="floating">Contacto do cliente</ion-label>
-        <ion-input required type="number" [(ngModel)]="cliente.telemovel"></ion-input>
+        <ion-input required type="number" #strPhoneNumber></ion-input>
       </ion-item>
 
       <ion-item >
         <ion-label position="floating">Observações ao cliente</ion-label>
-        <ion-textarea type="text" rows="5"[(ngModel)]="cliente.clienteObs" > </ion-textarea>
+        <ion-textarea type="text" rows="5"#strObs > </ion-textarea>
       </ion-item>
 
 

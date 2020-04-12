@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { UserService } from './../../services/user.service';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Cliente, ApiService } from 'src/app/services/api.service';
 import { ActivatedRoute } from '@angular/router';
 import { NavController, LoadingController } from '@ionic/angular';
@@ -9,51 +10,41 @@ import { NavController, LoadingController } from '@ionic/angular';
   styleUrls: ['./adicionar-cliente.page.scss'],
 })
 export class AdicionarClientePage implements OnInit {
-  cliente: Cliente = {
-    nome: '',
-    telemovel: '',
-    clienteObs:''
-  };
-  todoId = null;
+  @ViewChild('strName', null) strName: any;
+  @ViewChild('strPhoneNumber', null) strPhoneNumber: any;
+  @ViewChild('strObs', null) strObs: any;
+
+ 
   constructor(private webservice: ApiService, 
               private route: ActivatedRoute, 
               private nav: NavController, 
-              private loadingController: LoadingController) { }
+              private loadingController: LoadingController,
+              public user:UserService) { 
+
+              }
 
               ngOnInit() {
-                this.todoId = this.route.snapshot.params['id'];
-                console.log(this.todoId);
-                if (this.todoId)  {
-                  this.loadClientes();
-                }
+              
               }
              
-              async loadClientes() {
-                const loading = await this.loadingController.create({
-                  message: 'Loading Todo..'
-                });
-                await loading.present();
+      
              
-                this.webservice.getClient(this.todoId).subscribe(res => {
-                  loading.dismiss();
-                  this.cliente = res;
-                });
-              }
-             
-              async saveCliente() {
-                if( this.cliente.nome == '' ||  this.cliente.telemovel == ''){
-                  return
-                }
+async saveCliente() {
+    let user:any = this.user._currentUser;
+      
+      if( this.strName.value == '')
+      {
+        return
+      }
 
+        const loading = await this.loadingController.create({
+        message: 'A guardar cliente..'
+        });
+        await loading.present();
 
-                const loading = await this.loadingController.create({
-                  message: 'A guardar cliente..'
-                });
-                await loading.present();
-                
-                this.webservice.addCliente(this.cliente).then(() => {
-                    loading.dismiss();                    
-                });
-                
-              } 
+          this.webservice.insertClients(this.strName.value, this.strPhoneNumber.value, this.strObs.value,user.id).then(() => {
+          loading.dismiss();                    
+          }); 
+
+} 
 }

@@ -51,16 +51,7 @@ marcacao: Marcacoes = {
     this.marcacao.tratamento = this.txtTratamento.value;
     this.marcacao.data =  this.txtData.value;
     this.marcacao.hora =   this.txtHora.value.substring(11,16);
-    this.webservice.addMarcacao(this.marcacao).then(async (data) => {
-      console.log(data);
-      this.navCtrl.back()
-      const toast = await this.toastController.create({
-        message: 'A sua marcação foi adicionada com sucesso.',
-        duration: 2000,
-        position: 'top'
-      });
-      toast.present();
-    });
+ 
   }
 
 }

@@ -1,3 +1,4 @@
+import { UserService } from './../services/user.service';
 import { Component, ViewChild } from '@angular/core';
 import { Cliente, ApiService } from '../services/api.service';
 import { Router, NavigationExtras } from '@angular/router';
@@ -8,35 +9,24 @@ import { Router, NavigationExtras } from '@angular/router';
   styleUrls: ['tab1.page.scss']
 })
 export class Tab1Page {
-  clientes: Cliente[];
+  clientes:any;
 
-  constructor(private webservice: ApiService,private router: Router) { }
+  constructor(private webservice: ApiService,private router: Router, public user:UserService) { }
   @ViewChild('searchInput', null) searchInput: any;
 
-  allData = []; //Store all data from provider
-  filterData = [];//Store filtered data
   ngOnInit() {
-    this.webservice.GetClientes().subscribe(res => {
-      this.clientes = res;
+    
 
-      this.allData = this.clientes;
-      this.filterData = this.allData;
+    
+  }
+  ionViewWillEnter(){
+    let user:any = this.user._currentUser;
 
-
-      console.log( this.clientes);
+    this.webservice.getClientsByIdUser(user.id).then(data=>{
+      this.clientes = data;
+      this.clientes = this.clientes.client;
+      console.log(this.clientes);
     });
-  }
-  initializeItems(): void {
-   
-  }
-  filterList(val) {
-      this.filterData = this.allData.filter((cliente) => {
-        console.log(cliente);
-      return cliente.nome.toLowerCase().indexOf(this.searchInput.value.toLowerCase()) > -1;
-    });
-  }
-  remove(item) {
-    this.webservice.removeCliente(item.id);
   }
 
   navToCliente(cliente){
@@ -50,3 +40,28 @@ export class Tab1Page {
   }
 
 }
+
+
+
+
+
+
+  /* filterList(val) {
+      this.filterData = this.allData.filter((cliente) => {
+        console.log(cliente);
+      return cliente.nome.toLowerCase().indexOf(this.searchInput.value.toLowerCase()) > -1;
+    });
+  }
+  remove(item) {
+    this.webservice.removeCliente(item.id);
+  } */
+
+ /*   this.webservice.GetClientes().subscribe(res => {
+      this.clientes = res;
+
+      this.allData = this.clientes;
+      this.filterData = this.allData;
+
+
+      console.log( this.clientes);
+    }); */

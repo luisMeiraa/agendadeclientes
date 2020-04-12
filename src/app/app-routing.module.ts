@@ -17,6 +17,14 @@ const routes: Routes = [
   {
     path: 'adicionar-marcacao',
     loadChildren: () => import('./pages/adicionar-marcacao/adicionar-marcacao.module').then( m => m.AdicionarMarcacaoPageModule)
+  },
+  {
+    path: 'login',
+    loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule)
+  },
+  {
+    path: 'resgisto',
+    loadChildren: () => import('./pages/resgisto/resgisto.module').then( m => m.ResgistoPageModule)
   }
 ];
 @NgModule({

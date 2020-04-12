@@ -19,8 +19,8 @@
   </div>
 
 <ion-card style="background: transparent;box-shadow: none;">
-    <ion-item *ngFor="let cliente of filterData" (click)="navToCliente(cliente)">
-    {{cliente.nome}}
+    <ion-item *ngFor="let cliente of clientes" (click)="navToCliente(cliente)">
+    {{cliente.strName}}
   </ion-item>
 </ion-card>
 

@@ -50,7 +50,7 @@ cliente:any;
         {
           text: 'ELiminar',
           handler: () => {
-           this.webservice.removeCliente(this.cliente.id);
+           this.webservice.DeleteCliente(this.cliente.id);
            this.popoverController.dismiss();
            this.router.navigate(['tabs/tab1']);
           }
