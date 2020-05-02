@@ -1,3 +1,4 @@
+import { UserService } from './../../services/user.service';
 import { ApiService } from 'src/app/services/api.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { User } from 'src/app/interfaces/user';
@@ -13,7 +14,7 @@ export class LoginPage implements OnInit {
   @ViewChild('strEmail', null) strEmail: any;
   @ViewChild('strPassword', null) strPassword: any;
 
-  constructor(public webservice:ApiService,public storage: Storage,public router:Router) { }
+  constructor(public webservice:ApiService,public storage: Storage,public router:Router, public user:UserService) { }
 
   ngOnInit() {
    /*  this.webservice.getClientesPHP().then(data=>{
@@ -44,6 +45,7 @@ export class LoginPage implements OnInit {
        {
         this.storage.set('user_storage', resp.user).then((response) => {
           if(response){
+            this.user._currentUser = resp.user;
             this.router.navigate(['/tabs/tab1']);
 
           }

@@ -1,5 +1,5 @@
 import { element } from 'protractor';
-import { Marcacoes, ApiService } from './../services/api.service';
+import {  ApiService } from './../services/api.service';
 import { Component, OnInit, ViewChild, Inject, LOCALE_ID } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AlertController } from '@ionic/angular';

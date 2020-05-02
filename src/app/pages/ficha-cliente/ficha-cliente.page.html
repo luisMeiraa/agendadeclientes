@@ -26,7 +26,7 @@
     <div style="text-align: center;   " id="showDataContact">
 
       <p id="lblNome" class="labelNome" style="margin-top: 15px;">{{cliente?.strName}}</p>
-      <p id="lblTelemovel" style="font-size: 10px;">{{cliente?.telemovel}}</p>
+      <p id="lblTelemovel" style="font-size: 10px;">{{cliente?.strPhoneNumber}}</p>
       <div style="width: 100%; margin: 0 auto;" id="contactCalls">
         <ion-row>
           <ion-col style="  text-align: right;" size="6" (click)="openSms()">
@@ -54,21 +54,22 @@
     </div>
 
   </div>
+  
   <div
     style="background: white;width: 90%;margin: 0 auto;border: 0.5px solid lightpink; margin-top: 15px; border-radius: 10px; display:none"
     id="divEditContacto">
     <ion-item id="inpuName">
       <ion-label position="floating">Editar nome</ion-label>
-      <ion-input value="{{cliente?.nome}}" #txtNome></ion-input>
+      <ion-input value="{{cliente?.strName}}" #txtNome></ion-input>
     </ion-item>
 
     <ion-item id="inpuTelemovel">
       <ion-label position="floating">Editar contacto</ion-label>
-      <ion-input value="{{cliente?.telemovel}}" #txtTelemovel></ion-input>
+      <ion-input value="{{cliente?.strPhoneNumber}}" #txtTelemovel></ion-input>
     </ion-item>
     <ion-item id="inpuObservacoes">
       <ion-label position="stacked">Editar observações</ion-label>
-      <ion-textarea type="text" rows="5" value="{{cliente?.clienteObs}}" #txtObservacoes></ion-textarea>
+      <ion-textarea type="text" rows="5" value="{{cliente?.strObs}}" #txtObservacoes></ion-textarea>
     </ion-item>
   </div>
   <!--  <hr  style="opacity: 0.65;border-bottom: 0.5px solid rgba(31, 206, 179, 0.65);margin-top: 40px;"> -->

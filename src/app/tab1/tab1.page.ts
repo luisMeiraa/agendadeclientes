@@ -1,6 +1,6 @@
 import { UserService } from './../services/user.service';
 import { Component, ViewChild } from '@angular/core';
-import { Cliente, ApiService } from '../services/api.service';
+import {  ApiService } from '../services/api.service';
 import { Router, NavigationExtras } from '@angular/router';
 
 @Component({
@@ -9,25 +9,48 @@ import { Router, NavigationExtras } from '@angular/router';
   styleUrls: ['tab1.page.scss']
 })
 export class Tab1Page {
-  clientes:any;
+   @ViewChild('searchInput', null) searchInput: any;
 
-  constructor(private webservice: ApiService,private router: Router, public user:UserService) { }
-  @ViewChild('searchInput', null) searchInput: any;
+ clientes:any;
+
+  constructor(private webservice: ApiService,private router: Router, public user:UserService) { 
+    let _user:any = this.user._currentUser;
+
+    this.webservice.getClientsByIdUser(_user.id).then(data=>{
+      this.clientes = data;
+      this.clientes = this.clientes.client;
+      
+    });
+  }
+ 
 
   ngOnInit() {
     
 
     
   }
-  ionViewWillEnter(){
-    let user:any = this.user._currentUser;
 
-    this.webservice.getClientsByIdUser(user.id).then(data=>{
+
+  filterList(ev)
+  {
+
+  }
+  doRefresh(event) {
+    let _user:any = this.user._currentUser;
+
+    this.webservice.getClientsByIdUser(_user.id).then(data=>{
       this.clientes = data;
       this.clientes = this.clientes.client;
-      console.log(this.clientes);
+      
     });
+
+    setTimeout(() => {
+      
+      event.target.complete();
+    }, 2000);
   }
+
+ 
 
   navToCliente(cliente){
     let navigationExtras: NavigationExtras = {

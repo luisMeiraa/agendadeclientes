@@ -1,27 +1,14 @@
+import { UserService } from './user.service';
 import { element } from 'protractor';
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
+import { ToastController, LoadingController } from '@ionic/angular';
 
 
-export interface Cliente {
-  id?: string;
-  nome: string;
-  telemovel: string;
-  clienteObs:string
-}
-export interface Marcacoes{
-  id?: string,
-  id_cliente:string,
-  cliente:string,
-  data:string,
-  hora:string,
-  tratamento:string,
-  obsevacoes: string ,
-  data2:string
-}
+
 
 @Injectable({
   providedIn: 'root'
@@ -33,145 +20,37 @@ export class ApiService {
       'Content-Type': 'application/x-www-form-urlencoded'
     })
   }; 
-  public url = 'http://192.168.1.77/crud.php';  
-    /* 
-     criação de tabelas na base de dados
-    
-    */
-/*   private ClientesCollection: AngularFirestoreCollection<Cliente>;
-  private MarcacoesCollection: AngularFirestoreCollection<Marcacoes>;
-   private clientes: Observable<Cliente[]>;
-  private marcacoes: Observable<Marcacoes[]>;  */
 
 
-  constructor(db: AngularFirestore,public httpClient: HttpClient)  { 
-/* 
-     criação de tabelas na base de dados
-    
-    */
-    /* this.ClientesCollection = db.collection<Cliente>('clientes');
-    this.MarcacoesCollection = db.collection<Marcacoes>('Marcacoes');
- */
-    
-
-/*     this.clientes = this.ClientesCollection.snapshotChanges().pipe(
-      map(actions => {
-        return actions.map(a => {
-          const data = a.payload.doc.data();
-          const id = a.payload.doc.id;
-          return { id, ... data };
-        });
-      })
-    );
-
-    this.marcacoes = this.MarcacoesCollection.snapshotChanges().pipe(
-      map(actions => {
-        return actions.map(a => {
-          const data = a.payload.doc.data();
-          const id = a.payload.doc.id;
-          return { id, ... data };
-        });
-      })
-    ) */
 
 
-  }
-/* 
-  GetClientes(){
-    return this.clientes;
+
+  constructor(db: AngularFirestore,public httpClient: HttpClient, public user:UserService, private loadingController: LoadingController,public toastController: ToastController)  { 
   }
 
-  getClient(id) {
-    return this.ClientesCollection.doc<Cliente>(id).valueChanges();
+  async presentToast(msg) {
+    const toast = await this.toastController.create({
+      message: msg,
+      duration: 2000,
+      color: 'dark',
+      position: 'top'
+    });
+    toast.present();
   }
- 
-  updateCliente(cliente: Cliente, id: string) {
-    return this.ClientesCollection.doc(id).update(cliente);
+
+  loading:any;
+  async presentLoading(msg){
+     this.loading = await this.loadingController.create({
+      message: msg
+    });
+    await this.loading.present(); 
   }
- 
-  addCliente(cliente: Cliente) {
-    return this.ClientesCollection.add(cliente);
-  }
- 
-  removeCliente(id) {
-    return this.ClientesCollection.doc(id).delete();
+
+  async dissmissLoading(){
+    this.loading.dismiss(); 
   }
 
 
- */
-
-
-  /* 
-    MARCAÇÔES
-
-  */
-
-/*  Getmarcacoes(){
-  return this.marcacoes;
-}
-
-  addMarcacao(marcacao: Marcacoes) {
-    return this.MarcacoesCollection.add(marcacao);
-  }
- */
-
- /*
-
-  getClientesPHP() {
-    let url = 'http://localhost/crud.php?route=';
-
-     return new Promise(resolve => {
-      this.httpClient.get(url + "lista" ).subscribe(data => {
-        resolve(data);      
-      }, err => {
-        alert("Não foi possível obter os documentos:" + err.message);
-      });
-    });  
-   return this.httpClient.get(url + 'list').sub().then((response) => {
-   console.log(response);
-
-    }).catch((request) => {
-      console.log(request);
-    });;  
-  }*/
-/* 
-
-  postAPI(){
- 
-    
-    let body={
-      route: 'insert',
-      strName:'TESTE POST API'
-    };    
-console.log(body);
-    return new Promise(resolve => {
-      this.httpClient.post(this.url, body).subscribe(data => {
-        console.log(data);
-     
-      }, err => {
-        
-      });
-    });  
-  } 
-
-
-
-  login(email,password){
-     
-    let body={
-      route: 'login',
-      strEmail: email,
-      strPassword: password
-    };    
-
-    return new Promise(resolve => {
-      this.httpClient.post(this.url, body).subscribe(data => {
-        console.log(data);
-      }, err => {
-        
-      });
-    });  
-  }  */
 
   loginLaravel(email,password){
       
@@ -250,11 +129,13 @@ console.log(body);
     });
   }
 
-  DeleteCliente(idUser){
+  DeleteCliente(client){
+    
     let url='http://localhost:8000/api/Clients/DeleteCliente';
 
     let body={
-      idUser: idUser
+      idUser: client.idUser,
+      id: client.id
     };  
 
     return new Promise(resolve => {
@@ -267,5 +148,73 @@ console.log(body);
       });
     });
   }
+
+  UpdateClient(cliente,user){
+   
+    let url='http://localhost:8000/api/Clients/UpdateCliente';
+
+    let body={
+      idUser: user.id,
+      id: cliente.id,
+      strName:cliente.strName,
+      strPhoneNumber:cliente.strPhoneNumber,
+      strObs:cliente.strObs
+    };  
+    console.log(body);
+      return new Promise(resolve => {
+      this.httpClient.post(url,body).subscribe(data => {
+     
+        resolve(data);
+        console.log(data);
+      }, err => {
+        
+      });
+    });  
+  }
+
+
+      /* 
+       *            
+       *
+       *   MARCAÇÕES
+       * 
+       * 
+      */
+
+    createAppointment(appointment)
+    {
+      let url='http://localhost:8000/api/appointments/createAppointment';
+
+      let body = appointment;
+console.log(appointment);
+      return new Promise(resolve => {
+        this.httpClient.post(url,body).subscribe(data => {
+       
+          resolve(data);
+          console.log(data);
+        }, err => {
+          
+        });
+      }); 
+    }
+
+    getAppointments(idUser,id_client){
+      let url='http://localhost:8000/api/appointments/getAppointment';
+  
+      let body={
+        idUser: idUser,
+        id_client:id_client
+      };  
+  
+      return new Promise(resolve => {
+        this.httpClient.post(url,body).subscribe(data => {
+          resolve(data);
+          console.log(data);
+        }, err => {
+          
+        });
+      });
+    }
+
 
 }

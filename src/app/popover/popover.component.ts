@@ -24,6 +24,7 @@ cliente:any;
    
     
     this.cliente = this.navParams.get('cliente');
+
     console.log(this.cliente);
   }
 
@@ -50,7 +51,7 @@ cliente:any;
         {
           text: 'ELiminar',
           handler: () => {
-           this.webservice.DeleteCliente(this.cliente.id);
+           this.webservice.DeleteCliente(this.cliente);
            this.popoverController.dismiss();
            this.router.navigate(['tabs/tab1']);
           }

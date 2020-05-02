@@ -1,7 +1,7 @@
 import { UserService } from './../../services/user.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Cliente, ApiService } from 'src/app/services/api.service';
-import { ActivatedRoute } from '@angular/router';
+import {  ApiService } from 'src/app/services/api.service';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NavController, LoadingController } from '@ionic/angular';
 
 @Component({
@@ -17,6 +17,7 @@ export class AdicionarClientePage implements OnInit {
  
   constructor(private webservice: ApiService, 
               private route: ActivatedRoute, 
+              private router:Router,
               private nav: NavController, 
               private loadingController: LoadingController,
               public user:UserService) { 
@@ -38,11 +39,19 @@ async saveCliente() {
       }
 
         const loading = await this.loadingController.create({
-        message: 'A guardar cliente..'
+        message: 'A criar cliente..'
         });
         await loading.present();
 
-          this.webservice.insertClients(this.strName.value, this.strPhoneNumber.value, this.strObs.value,user.id).then(() => {
+          this.webservice.insertClients(this.strName.value, this.strPhoneNumber.value, this.strObs.value,user.id).then((data) => {
+            let resp:any = data;
+
+            if(resp.Status == true){
+              this.router.navigate(["tabs/tab1"]);
+            }else{
+              alert(resp.msg);
+            }
+
           loading.dismiss();                    
           }); 
 
