@@ -9,4 +9,12 @@ ion-item, ion-list{
   background-color: transparent  !important;
 }
 
-  
+  ion-item-option{
+    height: 30px;
+    align-self: center;
+    background: transparent;
+    z-index: 999999;
+  }
+   ion-item-options{
+   border: none;
+  } 

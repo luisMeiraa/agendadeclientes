@@ -27,6 +27,7 @@ export class ResgistoPage implements OnInit {
 
 
   registarUser(){
+
     if(this.strEmail.value == '' || this.strName.value == '' || this.strPassword.value == '' || this.confPass.value == ''){
       alert("Preencha todos os campos.");
       return;
@@ -35,14 +36,18 @@ export class ResgistoPage implements OnInit {
       alert("Verifique a palavra-passe");
       return;
     }
-
+    this.webservice.presentLoading('Estamos a criar a sua conta...')
     this.webservice.register(this.strEmail.value, this.strName.value,this.strPassword.value).then(data=>{
     let resp:any = data;
 
-      if(resp.status == true){
+      if(resp.Status == true){
         this.storage.set('user_storage', resp.user).then((response) => {
           if(response){
+            this.user._currentUser = resp.user;
+            console.log( this.user._currentUser);
+            this.webservice.dissmissLoading();
             this.router.navigate(['/tabs/tab1']);
+            this.webservice.presentToast('Seja muito bem vindo à nossa aplicação');
 
           }
         });

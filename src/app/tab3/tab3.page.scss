@@ -9,4 +9,31 @@ ion-item, ion-list{
   background-color: transparent  !important;
 }
 
+ion-header {
+  position: absolute;
+  ion-toolbar {
+    --background: transparent;
+    --ion-color-base: transparent !important;
+  }
+}
+
+ion-card{
+  background: white;
+  border-radius: 5px;
+  margin-top: 15%;
+}
+ion-avatar{
+  width: 100px;
+  height: 100px;
+}
+
+.font{
+  font-family: Didact Gothic;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 18px;
   
+  color: #313131;
+  
+}

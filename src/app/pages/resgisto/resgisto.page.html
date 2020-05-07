@@ -9,33 +9,33 @@
 
 <ion-content>
 
-  <div style="margin: 30px;">
+  <div class="center">
     <ion-list style="width: 100%;">
 
       <ion-item>
-        <ion-label position="floating">Nome</ion-label>
+        <ion-label class="label" position="floating">Nome</ion-label>
         <ion-input #strName></ion-input>
       </ion-item>
 
       <ion-item>
-        <ion-label position="floating">Email</ion-label>
+        <ion-label class="label" position="floating">Email</ion-label>
         <ion-input #strEmail></ion-input>
       </ion-item>
 
       <ion-item>
-        <ion-label position="floating">Password</ion-label>
+        <ion-label class="label" position="floating">Password</ion-label>
         <ion-input type="password"#strPassword></ion-input>
       </ion-item>
 
       <ion-item>
-        <ion-label position="floating">Repita a palavra-passe</ion-label>
+        <ion-label class="label" position="floating">Repita a palavra-passe</ion-label>
         <ion-input type="password"#confPass></ion-input>
       </ion-item>
 
 
 
-      <div style="margin-top: 25px; margin: 0 auto; width: 100%;text-align: center;">
-        <ion-button (click)="registarUser()">Registar</ion-button>
+      <div style="margin-top: 25px; width: 100%;text-align: center;">
+        <ion-button style="width: 200px;"(click)="registarUser()">Registar</ion-button>
       </div>
     </ion-list>
   </div>

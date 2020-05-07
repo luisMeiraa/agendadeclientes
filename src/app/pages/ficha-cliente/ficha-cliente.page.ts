@@ -42,9 +42,14 @@ export class FichaClientePage implements OnInit {
   }
 
   ionViewWillEnter(){
+    this.webservice.presentLoading('Por favor aguarde...')
     this.currentUser = this.user._currentUser;
-    this.webservice.getAppointments(this.currentUser.id,this.cliente.id).then(data=>{
+    this.webservice.getAppointmentsByUser(this.currentUser.id,this.cliente.id).then(data =>{
+      let resp:any = data;
+
+      this.marcacoes = resp.appointments;
       console.log(data);
+      this.webservice.dissmissLoading();
     })
   }
 

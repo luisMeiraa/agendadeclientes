@@ -1,6 +1,7 @@
 ion-content  {
-    --background: linear-gradient(183deg, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);
-    
+     --background: linear-gradient(183deg, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);
+   
+
   }  
   ion-header {
     position: absolute;
@@ -32,10 +33,8 @@ color: #313131;
 
   .divLogin{
     text-align: center;
-    position: relative;
-    top: 30%;
-    transform: translateY(-50%);
-    background-color: rgba(10,23,55,0.1);
+   
     margin: 30px;
     border-radius: 5px;
   }
+  

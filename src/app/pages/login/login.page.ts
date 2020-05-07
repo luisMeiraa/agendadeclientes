@@ -34,6 +34,7 @@ export class LoginPage implements OnInit {
       return;
     }
 
+    this.webservice.presentLoading('Estamos a preparar a tua experiência..');
 
     this.webservice.loginLaravel(this.strEmail.value,this.strPassword.value).then(data=>{
       let resp:any = data;
@@ -47,7 +48,7 @@ export class LoginPage implements OnInit {
           if(response){
             this.user._currentUser = resp.user;
             this.router.navigate(['/tabs/tab1']);
-
+            this.webservice.dissmissLoading();
           }
         });
        }

@@ -10,7 +10,10 @@
 
 
 <ion-content>
- 
+  <div>
+    <img style="opacity: 0.5;" src="assets/img/logo.png">
+    <p style="font-size: 10px; text-align: center;">Dá um passo à frente no agendamento das tuas marcações.</p>
+  </div>
 
   <div class="divLogin">
     <ion-item class="ion-margin" >
@@ -30,17 +33,19 @@
     </ion-item>
 
 
-    <ion-button style="margin:15px;width: 140px; " (click)="login()">
+    <ion-button style="margin:15px;width: 200px; " (click)="login()">
       Entrar
     </ion-button>
 
 
 
-    <div style="margin-top: 25px;" routerLink="/resgisto">
+    <div style="margin-top: 25px;padding-bottom: 10px;" routerLink="/resgisto">
         <ion-label>Ainda não tens conta?</ion-label>
     </div>
   </div>
 
+  <div class="fade">
 
+  </div>
 
 </ion-content>

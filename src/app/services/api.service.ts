@@ -54,7 +54,7 @@ export class ApiService {
 
   loginLaravel(email,password){
       
-    let url='http://localhost:8000/api/Auth/consulta';
+    let url='http://wh486292.ispot.cc/public/api/Auth/consulta';
 
     let body={
       strEmail: email,
@@ -73,7 +73,7 @@ export class ApiService {
 
 
   register(email,name,password){
-    let url='http://localhost:8000/api/Auth/insert';
+    let url='http://wh486292.ispot.cc/public/api/Auth/insert';
     let body={
       strEmail: email,
       strName:name,
@@ -91,7 +91,7 @@ export class ApiService {
   }
 
   insertClients(strName, strPhoneNumber,strObs, idUser){
-    let url='http://localhost:8000/api/Clients/createClient';
+    let url='http://wh486292.ispot.cc/public/api/Clients/createClient';
 
     let body={
       strPhoneNumber: strPhoneNumber,
@@ -113,7 +113,7 @@ export class ApiService {
 
 
   getClientsByIdUser(idUser){
-    let url='http://localhost:8000/api/Clients/getClientByIdUser';
+    let url='http://wh486292.ispot.cc/public/api/Clients/getClientByIdUser';
 
     let body={
       idUser: idUser
@@ -131,7 +131,7 @@ export class ApiService {
 
   DeleteCliente(client){
     
-    let url='http://localhost:8000/api/Clients/DeleteCliente';
+    let url='http://wh486292.ispot.cc/public/api/Clients/DeleteCliente';
 
     let body={
       idUser: client.idUser,
@@ -151,7 +151,7 @@ export class ApiService {
 
   UpdateClient(cliente,user){
    
-    let url='http://localhost:8000/api/Clients/UpdateCliente';
+    let url='http://wh486292.ispot.cc/public/api/Clients/UpdateCliente';
 
     let body={
       idUser: user.id,
@@ -183,7 +183,7 @@ export class ApiService {
 
     createAppointment(appointment)
     {
-      let url='http://localhost:8000/api/appointments/createAppointment';
+      let url='http://wh486292.ispot.cc/public/api/appointments/createAppointment';
 
       let body = appointment;
 console.log(appointment);
@@ -198,8 +198,8 @@ console.log(appointment);
       }); 
     }
 
-    getAppointments(idUser,id_client){
-      let url='http://localhost:8000/api/appointments/getAppointment';
+    getAppointmentsByUser(idUser,id_client){
+      let url='http://wh486292.ispot.cc/public/api/appointments/getAppointmentsByUser';
   
       let body={
         idUser: idUser,
@@ -216,5 +216,58 @@ console.log(appointment);
       });
     }
 
+    getAppointments(idUser,ScheduleDate){
+      let url='http://wh486292.ispot.cc/public/api/appointments/getAppointments';
+  
+      let body={
+        idUser: idUser,
+        strDateUTC: ScheduleDate
+      };  
+  
+      return new Promise(resolve => {
+        this.httpClient.post(url,body).subscribe(data => {
+          resolve(data);
+          console.log(data);
+        }, err => {
+          
+        });
+      });
+    }
+
+    deleteAppointment(idUser,id ){
+      let url='http://wh486292.ispot.cc/public/api/appointments/deleteAppointments';
+  
+      let body={
+        idUser: idUser,
+        id : id 
+      };  
+  
+      return new Promise(resolve => {
+        this.httpClient.post(url,body).subscribe(data => {
+          resolve(data);
+          console.log(data);
+        }, err => {
+          
+        });
+      });
+    }
+
+    GetAllAppointments(idUser){
+      let url='http://wh486292.ispot.cc/public/api/appointments/appointments';
+  
+      let body={
+        idUser: idUser,
+       
+      };  
+  
+      return new Promise(resolve => {
+        this.httpClient.post(url,body).subscribe(data => {
+          resolve(data);
+          console.log(data);
+        }, err => {
+          
+        });
+      });
+    }
 
 }

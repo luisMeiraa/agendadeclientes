@@ -1,11 +1,28 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Tab 3
-    </ion-title>
+<ion-header no-border no-shadow mode="ios">
+  <ion-toolbar color="primary" style="--border-width: 0 0 0px !important;">
+    <ion-buttons slot="start">
+    </ion-buttons>
+    <ion-title>Perfil</ion-title>
   </ion-toolbar>
-</ion-header>
+</ion-header> 
 
-<ion-content [fullscreen]="true">
-  <ion-button (click)="logOut()">sair</ion-button>
+<ion-content>
+
+
+   <div style="margin-top: 20%;">
+
+  
+      <div  style="margin: 15px;">
+         <ion-avatar >
+          <img src="assets/img/avatar.jpeg">
+         
+        </ion-avatar>
+      
+
+   
+          <h3 class="font">{{user?.strName}}</h3>
+
+      </div>
+ </div>
+<ion-button (click)="logOut()">sair</ion-button>
 </ion-content>

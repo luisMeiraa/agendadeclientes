@@ -28,12 +28,12 @@ user:any;
     private webservice: ApiService,
     private userService: UserService,
     private nav:NavController) {
+      
       this.user = this.userService._currentUser;
       console.log(this.user);
     if (this.router.getCurrentNavigation().extras.state) {
       this.cliente = this.router.getCurrentNavigation().extras.state.cliente;
-      
-     console.log( this.cliente);
+  
     }
    }
 
@@ -42,8 +42,9 @@ user:any;
 
  
   addMarcacao(){
-    this.marcacao.strDateUTC = this.txtData.value;
-    this.txtData.value.substring(0,10);
+     this.txtData.value.substring(0,10);
+    this.marcacao.strDateUTC = this.txtData.value.substring(0,10);;
+  
     let ano = this.txtData.value.substring(0,4);
     let mes = this.txtData.value.substring(5,7);
     let dia = this.txtData.value.substring(8,10);
@@ -58,16 +59,18 @@ user:any;
     this.marcacao.strService = this.txtTratamento.value;
     this.marcacao.strDate =  this.txtData.value;
     this.marcacao.strHour =   this.txtHora.value.substring(11,16);
-   this.webservice.createAppointment(this.marcacao).then(data=>{
+
+
+    this.webservice.createAppointment(this.marcacao).then(data=>{
       let resp:any = data;
 
       this.webservice.presentToast(resp.message);
       if(resp.Status == true)
       {
         this.nav.pop();
-        //this.router.navigate(['/tabs/tab1']);
+       
       }
-    }); 
+    });  
 
   }
  

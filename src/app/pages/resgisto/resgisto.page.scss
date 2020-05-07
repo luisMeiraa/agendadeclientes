@@ -16,3 +16,25 @@ ion-content  {
       --ion-color-base: transparent !important;
     }
   }
+
+
+
+  .center{
+    position: relative;
+    top: 43%;
+    transform: translateY(-50%);
+    border-radius: 5px;
+    
+    margin: 30px;
+  }
+  
+  ion-label, .label{
+    font-family: Didact Gothic;
+font-style: normal;
+font-weight: normal;
+font-size: 14px;
+line-height: 18px;
+
+color: #313131;
+
+  }

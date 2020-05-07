@@ -1,8 +1,9 @@
+import { UserService } from 'src/app/services/user.service';
 import { element } from 'protractor';
 import {  ApiService } from './../services/api.service';
 import { Component, OnInit, ViewChild, Inject, LOCALE_ID } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { AlertController } from '@ionic/angular';
+import { AlertController, ActionSheetController } from '@ionic/angular';
 import { CalendarComponent } from 'ionic2-calendar/calendar';
 import { formatDate } from '@angular/common';
 
@@ -15,19 +16,45 @@ export class Tab2Page  {
   @ViewChild(CalendarComponent,{static: false}) myCal: CalendarComponent;
 
   marcacoes:any=[];
-  constructor(private webservice: ApiService,private alertCtrl: AlertController, @Inject(LOCALE_ID) private locale: string) {}
+  user:any;
+  datasMarcacoes:any;
+  constructor(
+    private webservice: ApiService,
+    private alertCtrl: AlertController, 
+    @Inject(LOCALE_ID) 
+    private locale: string, 
+    public userService:UserService,
+    public actionSheetController: ActionSheetController) {
+    this.user = this.userService._currentUser;
+    console.log(this.user.id);
 
+   
+  }
+
+  ionViewWillEnter(){
+    this.webservice.GetAllAppointments(this.user.id).then(data=>{
+      let resp:any = data;
+
+      this.datasMarcacoes=resp.appointments
+
+      console.log( this.datasMarcacoes);
+
+      for(var i = 0; i < this.datasMarcacoes.length ; i++ ){
+
+        this.datasMarcacoes[i].strDateUTC = this.datasMarcacoes[i].strDateUTC.replace(/\./g,'-');
+
+        this.event.startTime = this.datasMarcacoes[i].strDateUTC + "T13:00:27.25";
+        
+        this.event.endTime = this.datasMarcacoes[i].strDateUTC+ "T13:00:27.25";
+        this.addEvent();
+  
+  
+      }
+  }); 
+  }
 
 ngOnInit() {
-/*   this.webservice.Getmarcacoes().subscribe(res => {
-    this.marcacoes = res;
-    for(var i = 0; i<this.marcacoes.length;i++){
-      this.event.startTime = this.marcacoes[i].data2 + "T13:00:27.25";
-      this.event.endTime = this.marcacoes[i].data2+ "T13:00:27.25";
-      this.addEvent();
-    }
-    
-    });  */
+ 
 }
   event = {
     id:'',
@@ -109,39 +136,56 @@ public allData:any;
 public ScheduleDate:any;
 // Time slot was clicked 
 onTimeSelected(ev) {
-  console.log(ev);
+   let selected = new Date(ev.selectedTime);
+  
+   this.ScheduleDate = selected.toISOString();
+   this.ScheduleDate=this.ScheduleDate.substring(0,10);
+  
+
+
+
+
+      this.webservice.getAppointments( this.user.id, this.ScheduleDate).then(data=>{
+                console.log(data);
+      let resp:any = data;
+                  this.marcacoes = resp.appointments;
+      }) 
+
+  this.event.startTime = selected.toISOString();
+  selected.setHours(selected.getHours() + 1);
+  this.event.endTime = (selected.toISOString()); 
+}
+
+ async deleteAppointment(appointment){
 
  
   
-  let selected = new Date(ev.selectedTime);
-  this.ScheduleDate = selected.toISOString();
-  console.log( this.ScheduleDate);
-  this.ScheduleDate.substring(0,10);
-
-      let ano =  this.ScheduleDate.substring(0,4)
-      let mes =  this.ScheduleDate.substring(5,7)
-      let dia =  this.ScheduleDate.substring(8,10)
-       this.ScheduleDate = dia+'/'+mes+'/'+ano
-
-       //this.ScheduleDate = selected.getFullYear()+"/"+(selected.getMonth()+1) +"/"+ selected.getUTCDate();
-  console.log( this.ScheduleDate);
-
-
-/* this.webservice.Getmarcacoes().subscribe(res => {
-    this.allData = res;
-    this.marcacoes = this.allData.filter((marcacao) => {
-      console.log(marcacao);
-      return marcacao.data ==  this.ScheduleDate
-  });
-  console.log(this.marcacoes); 
+    const actionSheet = await this.actionSheetController.create({
+      header: 'Deseja apagar a marcação?',
+      buttons: [{
+        text: 'Apagar',
+        role: 'destructive',
+        icon: 'trash',
+        handler: () => {
+        console.log(appointment);
+        this.webservice.deleteAppointment(this.user.id,appointment.id).then(data=>{
+          this.webservice.presentToast('Marcação eliminada com sucesso.')
+          this.today();
+        });
+        }
+      }, {
+        text: 'Cancelar',
+        icon: 'close',
+        role: 'cancel',
+        handler: () => {
+         
+        }
+      }]
+    });
+    await actionSheet.present();
   
+    
+  }
 
-}); */
 
-
-
- /*  this.event.startTime = selected.toISOString();
-  selected.setHours(selected.getHours() + 1);
-  this.event.endTime = (selected.toISOString()); */
-}
 }

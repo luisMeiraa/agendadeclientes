@@ -1,3 +1,4 @@
+import { UserService } from 'src/app/services/user.service';
 import { Component } from '@angular/core';
 import { Storage } from '@ionic/storage';
 import { Router } from '@angular/router';
@@ -8,13 +9,20 @@ import { Router } from '@angular/router';
 })
 export class Tab3Page {
 
-  constructor(private storage: Storage, public router:Router) {}
+  public user:any;
+
+  constructor(private storage: Storage, public router:Router, public userService:UserService) {
+
+    this.user = this.userService._currentUser;
+    console.log(this.userService._currentUser);
+  }
 
 
   logOut(){
+    console.log("asd");
     this.storage.remove("user_storage").then(() => {
       
-      this.router.navigate(['login']);
+      this.router.navigate(['/login']);
     });
   }
 }
