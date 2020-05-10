@@ -39,8 +39,10 @@ export class LoginPage implements OnInit {
     this.webservice.loginLaravel(this.strEmail.value,this.strPassword.value).then(data=>{
       let resp:any = data;
 
-       if(resp.Status == false){
+       if(resp.Status == false)
+       {
          alert(resp.msg);  
+         this.webservice.dissmissLoading();
        }
        if(resp.Status == true)
        {

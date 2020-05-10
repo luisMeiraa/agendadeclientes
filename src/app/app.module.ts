@@ -18,12 +18,13 @@ import { registerLocaleData } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { IonicStorageModule } from '@ionic/storage';
 import { UserService } from './services/user.service';
+import { FiltersComponent } from './components/filters/filters.component';
 registerLocaleData(localePt, 'pt-PT');
 
 
 @NgModule({
-  declarations: [AppComponent,PopoverComponent],
-  entryComponents: [PopoverComponent],
+  declarations: [AppComponent,PopoverComponent,FiltersComponent],
+  entryComponents: [PopoverComponent,FiltersComponent],
   imports: [
     
     BrowserModule, 

@@ -11,12 +11,22 @@
   <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
-  <ion-searchbar
-  mode="ios"
-  #searchInput
-  showcancelbutton=""
-  (ionInput)="filterList($event)"
-></ion-searchbar>
+
+  <ion-row>
+    <ion-col size="11">
+      <ion-searchbar
+      mode="ios"
+      #searchInput
+      showcancelbutton=""
+      (ionChange)="searchContacts()" #textSearchValue
+      placeholder="Pesquisa..."
+    ></ion-searchbar>
+    </ion-col>
+    <ion-col size="1">
+      <ion-icon (click)="menu($event)" name="filter-outline" style="font-size: 25px;padding-top: 15px;"></ion-icon>
+     
+    </ion-col>
+  </ion-row>
   <div style="margin-top: 25px; margin-left: 25px;">
     <strong style="font-size: 20px;">Lista de clientes</strong>
   </div>

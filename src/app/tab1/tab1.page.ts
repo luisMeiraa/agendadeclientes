@@ -2,6 +2,8 @@ import { UserService } from './../services/user.service';
 import { Component, ViewChild } from '@angular/core';
 import {  ApiService } from '../services/api.service';
 import { Router, NavigationExtras } from '@angular/router';
+import { PopoverController } from '@ionic/angular';
+import { FiltersComponent } from '../components/filters/filters.component';
 
 @Component({
   selector: 'app-tab1',
@@ -9,18 +11,19 @@ import { Router, NavigationExtras } from '@angular/router';
   styleUrls: ['tab1.page.scss']
 })
 export class Tab1Page {
-   @ViewChild('searchInput', null) searchInput: any;
+   @ViewChild('textSearchValue',null) textSearchValue : any;
 
  clientes:any;
+ _user:any;
+  constructor(   
+    private popoverCtrl : PopoverController, 
+    private webservice: ApiService,
+    private router: Router, 
+    public user:UserService) { 
+     this._user = this.user._currentUser;
+   
 
-  constructor(private webservice: ApiService,private router: Router, public user:UserService) { 
-    let _user:any = this.user._currentUser;
-
-    this.webservice.getClientsByIdUser(_user.id).then(data=>{
-      this.clientes = data;
-      this.clientes = this.clientes.client;
-      
-    });
+   this.getClients();
   }
  
 
@@ -30,19 +33,44 @@ export class Tab1Page {
     
   }
 
-
-  filterList(ev)
-  {
-
-  }
-  doRefresh(event) {
-    let _user:any = this.user._currentUser;
-
-    this.webservice.getClientsByIdUser(_user.id).then(data=>{
+  getClients(){
+    this.webservice.getClientsByIdUser(this._user.id).then(data=>{
       this.clientes = data;
       this.clientes = this.clientes.client;
       
     });
+  }
+
+
+  async menu(event: any){
+
+    let popover = await this.popoverCtrl.create({
+      component : FiltersComponent,
+      event : event,
+    });
+
+  
+
+
+    popover.onDidDismiss()
+    .then((result) => {
+      console.log(result['data'].clientes);
+     this.clientes = result['data'].clientes;
+    }); 
+    
+    return await popover.present();
+}
+
+
+searchContacts()
+  {
+    this.webservice.searchClients(this._user.id,this.textSearchValue.value).then(data=>{
+      this.clientes = data['client'];
+    });
+  }
+
+  doRefresh(event) {
+    this.getClients();
 
     setTimeout(() => {
       

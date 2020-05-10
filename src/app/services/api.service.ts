@@ -270,4 +270,40 @@ console.log(appointment);
       });
     }
 
+    GetClientsByOrder(idUser,order){
+      let url='http://wh486292.ispot.cc/public/api/Clients/OrderCLients';
+  
+      let body={
+        idUser: idUser,
+        strOrder: order
+      };  
+  
+      return new Promise(resolve => {
+        this.httpClient.post(url,body).subscribe(data => {
+          resolve(data);
+          console.log(data);
+        }, err => {
+          
+        });
+      });
+    }
+
+    searchClients(idUser,txtSearch){
+      let url='http://wh486292.ispot.cc/public/api/Clients/searchClients';
+  
+      let body={
+        idUser: idUser,
+        strSearch: txtSearch
+      };  
+  
+      return new Promise(resolve => {
+        this.httpClient.post(url,body).subscribe(data => {
+          resolve(data);
+          console.log(data);
+        }, err => {
+          
+        });
+      });
+    }
+    
 }

@@ -39,7 +39,7 @@ export class AppComponent {
 
   initializeApp() {
     this.platform.ready().then(() => {
-      this.router.navigate(['login']);
+  /*     this.router.navigate(['login']); */
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });
