@@ -1,0 +1,42 @@
+ion-content  {
+    --background: linear-gradient(183deg, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);
+    
+  }
+  
+  
+  ion-item, ion-list{
+    --background:transparent;       
+    background-color: transparent  !important;
+  }
+  ion-item:focus{
+    color: black;
+  }
+  ion-header {
+    position: absolute;
+    ion-toolbar {
+      --background: transparent;
+      --ion-color-base: transparent !important;
+    }
+  }
+  .item-has-focus{
+      ion-label{
+        color: #313131;
+      }
+      
+  }
+  .center{
+  
+    
+    margin: 30px;
+  }
+  
+  ion-label, .label{
+    font-family: 'Didact Gothic';
+font-style: normal;
+font-weight: normal;
+font-size: 14px;
+line-height: 18px;
+
+color: #313131;
+
+  }

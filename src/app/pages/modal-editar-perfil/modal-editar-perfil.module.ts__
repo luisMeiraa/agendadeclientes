@@ -1,0 +1,20 @@
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+
+import { IonicModule } from '@ionic/angular';
+
+import { ModalEditarPerfilPageRoutingModule } from './modal-editar-perfil-routing.module';
+
+import { ModalEditarPerfilPage } from './modal-editar-perfil.page';
+
+@NgModule({
+  imports: [
+    CommonModule,
+    FormsModule,
+    IonicModule,
+    ModalEditarPerfilPageRoutingModule
+  ],
+  declarations: [ModalEditarPerfilPage]
+})
+export class ModalEditarPerfilPageModule {}

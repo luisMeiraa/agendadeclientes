@@ -2,7 +2,7 @@ import { UserService } from 'src/app/services/user.service';
 import { element } from 'protractor';
 import {  ApiService } from './../services/api.service';
 import { Component, OnInit, ViewChild, Inject, LOCALE_ID } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { AlertController, ActionSheetController } from '@ionic/angular';
 import { CalendarComponent } from 'ionic2-calendar/calendar';
 import { formatDate } from '@angular/common';
@@ -19,6 +19,7 @@ export class Tab2Page  {
   user:any;
   datasMarcacoes:any;
   constructor(
+    private router:Router,
     private webservice: ApiService,
     private alertCtrl: AlertController, 
     @Inject(LOCALE_ID) 
@@ -187,5 +188,13 @@ onTimeSelected(ev) {
     
   }
 
-
+  addAppointment(){
+    let navigationExtras: NavigationExtras = {
+        state: {
+            cliente: 'ko',
+            
+          }
+     };
+  this.router.navigate(['adicionar-marcacao'], navigationExtras);
+  }
 }

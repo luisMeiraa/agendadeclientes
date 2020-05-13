@@ -1,28 +1,21 @@
-<ion-header no-border no-shadow mode="ios">
+ <ion-header no-border no-shadow mode="ios">
   <ion-toolbar color="primary" style="--border-width: 0 0 0px !important;">
     <ion-buttons slot="start">
     </ion-buttons>
-    <ion-title>Perfil</ion-title>
+    <ion-title>Definições</ion-title>
   </ion-toolbar>
-</ion-header> 
+</ion-header>  
 
 <ion-content>
-
-
-   <div style="margin-top: 20%;">
-
-  
-      <div  style="margin: 15px;">
-         <ion-avatar >
-          <img src="assets/img/avatar.jpeg">
-         
-        </ion-avatar>
-      
-
-   
-          <h3 class="font">{{user?.strName}}</h3>
-
-      </div>
- </div>
-<ion-button (click)="logOut()">sair</ion-button>
+  <div style="margin-top: 15%;">
+    <ion-item (click)="editarPerfil()">
+      <ion-label>Editar o meu perfil </ion-label><ion-icon name="chevron-forward-outline"></ion-icon>
+    </ion-item>
+    <ion-item (click)="logOut()">
+      <ion-label>Terminar sessão</ion-label><ion-icon name="log-out-outline"></ion-icon>
+    </ion-item>
+    <ion-item>
+      <ion-label>Apagar a minha conta</ion-label><ion-icon name="person-remove-outline"></ion-icon>
+    </ion-item>
+  </div>
 </ion-content>

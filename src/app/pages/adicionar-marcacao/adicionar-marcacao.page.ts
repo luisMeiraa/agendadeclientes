@@ -19,7 +19,7 @@ export class AdicionarMarcacaoPage implements OnInit {
 cliente:any;
 marcacao:any={};
 user:any;
-
+clientes:any;
   constructor(
     public toastController: ToastController,
     public navCtrl: NavController,
@@ -30,14 +30,20 @@ user:any;
     private nav:NavController) {
       
       this.user = this.userService._currentUser;
-      console.log(this.user);
+
     if (this.router.getCurrentNavigation().extras.state) {
       this.cliente = this.router.getCurrentNavigation().extras.state.cliente;
-  
+      if(this.cliente == 'ko'){
+         this. getClients();
+         this.cliente.id = null;
+      }
+     
     }
+
    }
 
   ngOnInit() {
+    this. getClients();
   }
 
  
@@ -57,9 +63,9 @@ user:any;
     this.marcacao.strClientContact = this.cliente.strPhoneNumber;
     this.marcacao.strObs = this.txtObservacoes.value;
     this.marcacao.strService = this.txtTratamento.value;
-    this.marcacao.strDate =  this.txtData.value;
-    this.marcacao.strHour =   this.txtHora.value.substring(11,16);
-
+    this.marcacao.strDate = this.txtData.value;
+    this.marcacao.strHour = this.txtHora.value.substring(11,16);
+console.log( this.marcacao);
 
     this.webservice.createAppointment(this.marcacao).then(data=>{
       let resp:any = data;
@@ -74,4 +80,14 @@ user:any;
 
   }
  
+
+  getClients(){
+    this.webservice.getClientsByIdUser(this.user.id).then(data=>{
+      this.clientes = data;
+      this.clientes = this.clientes.client;
+      
+    });
+  }
+
+  
 }

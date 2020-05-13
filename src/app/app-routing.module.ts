@@ -25,7 +25,11 @@ const routes: Routes = [
   {
     path: 'resgisto',
     loadChildren: () => import('./pages/resgisto/resgisto.module').then( m => m.ResgistoPageModule)
-  }
+  },
+  /* {
+    path: 'modal-editar-perfil',
+    loadChildren: () => import('./pages/modal-editar-perfil/modal-editar-perfil.module').then( m => m.ModalEditarPerfilPageModule)
+  } */
 ];
 @NgModule({
   imports: [

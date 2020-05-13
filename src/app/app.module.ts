@@ -19,12 +19,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { IonicStorageModule } from '@ionic/storage';
 import { UserService } from './services/user.service';
 import { FiltersComponent } from './components/filters/filters.component';
+import { ModalEditarPerfilPage } from './pages/modal-editar-perfil/modal-editar-perfil.page';
 registerLocaleData(localePt, 'pt-PT');
 
 
 @NgModule({
-  declarations: [AppComponent,PopoverComponent,FiltersComponent],
-  entryComponents: [PopoverComponent,FiltersComponent],
+  declarations: [AppComponent,PopoverComponent,FiltersComponent,ModalEditarPerfilPage],
+  entryComponents: [PopoverComponent,FiltersComponent,ModalEditarPerfilPage],
   imports: [
     
     BrowserModule, 

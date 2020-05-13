@@ -9,6 +9,17 @@
 
 <ion-content>
 <div style="width: 90%;margin: 0 auto;margin-top: 30%;">
+  <div style="width: 100%; margin-bottom: 20px;" *ngIf="cliente.strName != 'ko'">
+    <ion-label >Cliente</ion-label>
+    <ion-item style="border-radius: 5px;" lines="none" >  
+      <ion-input value="{{cliente?.strName}}" disabled="true"></ion-input>
+   <!--    <ion-select  value="{{cliente.strName}}" mode="ios"  interface="popover">
+        <ion-select-option *ngFor="let clis of clientes" value="{{clis?.strName}}" >{{clis?.strName}}</ion-select-option>
+      </ion-select>
+ -->
+    </ion-item>
+  </div>
+
   <div style="width: 100%;">
     <ion-label >Tratamento</ion-label>
     <ion-item style="border-radius: 5px;" lines="none" >
