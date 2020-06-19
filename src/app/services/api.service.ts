@@ -1,3 +1,4 @@
+import { User } from 'src/app/interfaces/user';
 import { UserService } from './user.service';
 import { element } from 'protractor';
 import { Injectable } from '@angular/core';
@@ -89,7 +90,26 @@ export class ApiService {
       });
     });  
   }
+ updateUser(user){
+   console.log(user/*  */);
+    let url='http://127.0.0.1:8000/api/Auth/editUser';
 
+    let body={
+      id:user.id,
+      strName:user.strName,
+      strEmail:user.strEmail,
+      strPassword:'123456'
+    };  
+
+    return new Promise(resolve => {
+      this.httpClient.post(url,body).subscribe(data => {
+        resolve(data);
+        console.log(data);
+      }, err => {
+        
+      });
+    });
+  }
   insertClients(strName, strPhoneNumber,strObs, idUser){
     let url='http://wh486292.ispot.cc/public/api/Clients/createClient';
 
@@ -110,7 +130,7 @@ export class ApiService {
     });
   }
 
-
+ 
 
   getClientsByIdUser(idUser){
     let url='http://wh486292.ispot.cc/public/api/Clients/getClientByIdUser';
@@ -181,6 +201,7 @@ export class ApiService {
        * 
       */
 
+      
     createAppointment(appointment)
     {
       let url='http://wh486292.ispot.cc/public/api/appointments/createAppointment';

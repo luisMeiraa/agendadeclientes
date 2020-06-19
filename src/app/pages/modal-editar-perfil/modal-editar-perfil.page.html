@@ -1,11 +1,13 @@
 <ion-header no-border no-shadow mode="ios">
   <ion-toolbar color="primary" style="--border-width: 0 0 0px !important;">
     <ion-buttons slot="start">
-      <ion-button (click)="dismiss()" style="--background: transparent;"><ion-icon name="chevron-back-outline"></ion-icon></ion-button>
+      <ion-button (click)="dismiss()" style="--background: transparent;">
+        <ion-icon name="chevron-back-outline"></ion-icon>
+      </ion-button>
     </ion-buttons>
     <ion-title>Editar perfil</ion-title>
   </ion-toolbar>
-</ion-header>  
+</ion-header>
 
 <ion-content>
   <div class="center">
@@ -13,16 +15,16 @@
 
       <ion-item>
         <ion-label class="label" position="floating">Nome</ion-label>
-        <ion-input #strName clearInput ></ion-input>
+        <ion-input #strName clearInput></ion-input>
       </ion-item>
 
       <ion-item>
         <ion-label class="label" position="floating">Email</ion-label>
-        <ion-input #strEmail clearInput   ></ion-input>
+        <ion-input #strEmail clearInput></ion-input>
       </ion-item>
 
-  
-    <!--   <ion-item>
+
+      <!--   <ion-item>
         <ion-label class="label" position="floating">Password</ion-label>
         <ion-input type="password"#strPassword></ion-input>
       </ion-item>
@@ -32,11 +34,22 @@
         <ion-input type="password"#confPass></ion-input>
       </ion-item> -->
     </ion-list>
-      <div>
-        <ion-item lines=none>
-          <ion-label style="font-size: 11px;">Queres editar a tua Password?</ion-label>
+    <div>
+      <ion-item lines=none (click)="editPassword()">
+        <ion-label style="font-size: 11px;">Queres editar a tua Password?</ion-label>
+        <ion-icon name="chevron-down-outline"></ion-icon>
+      </ion-item>
+      <div id="editPassword" style="display: none;">
+        <ion-item>
+          <ion-label position="floating">Password</ion-label>
+         <ion-input type="password" #strPassword></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Repete a password</ion-label>
+          <ion-input type="password" #confPass></ion-input>
         </ion-item>
       </div>
+    </div>
   </div>
 
 </ion-content>

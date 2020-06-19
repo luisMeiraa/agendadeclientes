@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ModalController, NavParams } from '@ionic/angular';
+import { ApiService } from 'src/app/services/api.service';
 
 @Component({
   selector: 'app-modal-editar-perfil',
@@ -12,7 +13,7 @@ export class ModalEditarPerfilPage implements OnInit {
   @ViewChild('strName', null) strName: any;
   @ViewChild('strPassword', null) strPassword: any;
   @ViewChild('confPass', null) confPass: any;
-  constructor(public modalController: ModalController, private navParams:NavParams) { }
+  constructor(public modalController: ModalController, private navParams:NavParams, private webservice: ApiService,) { }
 
   ngOnInit() {
       this.user = this.navParams.get("user");
@@ -27,6 +28,14 @@ export class ModalEditarPerfilPage implements OnInit {
     });
   }
   saveEditUser(){
+    this.user.strEmail = this.strEmail.value;
+    this.user.strName =  this.strName.value;
+    this.webservice.updateUser(this.user).then(data=>{
+      console.log(data);
+    })
+  }
 
+  editPassword(){
+      document.getElementById("editPassword").style.display="block"
   }
 }
