@@ -91,14 +91,14 @@ export class ApiService {
     });  
   }
  updateUser(user){
-   console.log(user/*  */);
-    let url='http://127.0.0.1:8000/api/Auth/editUser';
+ 
+    let url='http://wh486292.ispot.cc/public/api/Auth/update';
 
     let body={
       id:user.id,
       strName:user.strName,
       strEmail:user.strEmail,
-      strPassword:'123456'
+      strPassword:user.strPassword
     };  
 
     return new Promise(resolve => {

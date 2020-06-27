@@ -16,102 +16,101 @@
 </ion-header>
 
 <ion-content style="color: white;">
-  <div>
+  <div style="position: relative;top: 30%;transform: translateY(-50%);">
+      <div>
 
-    <div style=" padding-top: 15%;">
-      <ion-avatar style="margin:0 auto; border: 0.5px solid lightpink;" class="avatarPerfil">
-        <img src="{{cliente?.strBase64Photo}}" onerror="this.src='/assets/img/avatar.jpg';">
-      </ion-avatar>
-    </div>
-    <div style="text-align: center;   " id="showDataContact">
+        <!-- <div style=" padding-top: 15%;">
+          <ion-avatar style="margin:0 auto; border: 0.5px solid lightpink;" class="avatarPerfil">
+            <img src="{{cliente?.strBase64Photo}}" onerror="this.src='/assets/img/avatar.jpg';">
+          </ion-avatar>
+        </div> -->
+        <div style="text-align: center;   " id="showDataContact">
 
-      <p id="lblNome" class="labelNome" style="margin-top: 15px;">{{cliente?.strName}}</p>
-      <p id="lblTelemovel" style="font-size: 10px;">{{cliente?.strPhoneNumber}}</p>
-      <div style="width: 100%; margin: 0 auto;" id="contactCalls">
-        <ion-row>
-          <ion-col style="  text-align: right;" size="6" (click)="openSms()">
-            <ion-icon name="chatbubble-outline"
-              style="padding: 9px; border: 1px solid lightpink; border-radius: 100px;"></ion-icon>
-          </ion-col>
-          <ion-col style="  text-align: left" size="6">
-            <a href="tel:{{cliente?.strPhoneNumber}}" style="color: black;">
-              <ion-icon name="call-outline" style="padding: 9px; border: 1px solid lightpink; border-radius: 100px;">
-              </ion-icon>
-            </a>
-
-
-          </ion-col>
-        </ion-row>
-      </div>
-
-      <div *ngIf="cliente.clienteObs != ''" id=" lblObservacoes"
-        style="
-      border: 0.5px solid lightpink;width: 72%;margin: 0 auto;text-align: center;background: white; border-radius: 5px;">
-        <p disabled="true" style="line-height: 1.5;font-size: 10px;text-align: center; padding: 10px;margin: 0 auto;">
-          {{cliente?.strObs}}</p>
-      </div>
-
-    </div>
-
-  </div>
-
-  <div
-    style="background: white;width: 90%;margin: 0 auto;border: 0.5px solid lightpink; margin-top: 15px; border-radius: 10px; display:none"
-    id="divEditContacto">
-    <ion-item id="inpuName">
-      <ion-label position="floating">Editar nome</ion-label>
-      <ion-input value="{{cliente?.strName}}" #txtNome></ion-input>
-    </ion-item>
-
-    <ion-item id="inpuTelemovel">
-      <ion-label position="floating">Editar contacto</ion-label>
-      <ion-input value="{{cliente?.strPhoneNumber}}" #txtTelemovel></ion-input>
-    </ion-item>
-    <ion-item id="inpuObservacoes">
-      <ion-label position="stacked">Editar observações</ion-label>
-      <ion-textarea type="text" rows="5" value="{{cliente?.strObs}}" #txtObservacoes></ion-textarea>
-    </ion-item>
-  </div>
-  <!--  <hr  style="opacity: 0.65;border-bottom: 0.5px solid rgba(31, 206, 179, 0.65);margin-top: 40px;"> -->
-
-  <div id="marcacoes">
-    <ion-card *ngFor="let marcacao of marcacoes" style="margin: 40px;    background: transparent;">
-
-      <ion-card-header style="padding: 0px;">
-        <ion-row>
-          <ion-col size="6" class="categoryLabel" style="padding: 0px; text-align: left;">
-            {{marcacao.strClientName}}
-          </ion-col>
-          <ion-col size="6" style="padding: 0px; text-align: right;">
+          <p id="lblNome" class="labelNome" style="margin-top: 15px;">{{cliente?.strName}}</p>
+          <p id="lblTelemovel" style="font-size: 10px;">{{cliente?.strPhoneNumber}}</p>
+          <div style="width: 100%; margin: 0 auto;" id="contactCalls">
             <ion-row>
-              <ion-col size="8">
-                <p class="descTime">{{marcacao.strDate}}</p>
+              <ion-col style="  text-align: right;" size="6" (click)="openSms()">
+                <ion-icon name="chatbubble-outline"
+                  style="padding: 9px; border: 1px solid lightpink; border-radius: 100px;"></ion-icon>
               </ion-col>
-              <ion-col size="4">
-                <p class="descTime">{{marcacao.strHour}}</p>
+              <ion-col style="  text-align: left" size="6">
+                <a href="tel:{{cliente?.strPhoneNumber}}" style="color: black;">
+                  <ion-icon name="call-outline" style="padding: 9px; border: 1px solid lightpink; border-radius: 100px;">
+                  </ion-icon>
+                </a>
+
+
+              </ion-col>
+            </ion-row>
+          </div>
+
+          <div *ngIf="cliente.clienteObs != ''" id=" lblObservacoes"
+            style="
+          border: 0.5px solid lightpink;width: 72%;margin: 0 auto;text-align: center;background: white; border-radius: 5px;">
+            <p disabled="true" style="line-height: 1.5;font-size: 10px;text-align: center; padding: 10px;margin: 0 auto;">
+              {{cliente?.strObs}}</p>
+          </div>
+
+        </div>
+
+      </div>
+      <div
+        style="background: white;width: 90%;margin: 0 auto;border: 0.5px solid lightpink; margin-top: 15px; border-radius: 10px; display:none"
+        id="divEditContacto">
+        <ion-item id="inpuName">
+          <ion-label position="floating">Editar nome</ion-label>
+          <ion-input value="{{cliente?.strName}}" #txtNome></ion-input>
+        </ion-item>
+
+        <ion-item id="inpuTelemovel">
+          <ion-label position="floating">Editar contacto</ion-label>
+          <ion-input value="{{cliente?.strPhoneNumber}}" #txtTelemovel></ion-input>
+        </ion-item>
+        <ion-item id="inpuObservacoes">
+          <ion-label position="stacked">Editar observações</ion-label>
+          <ion-textarea type="text" rows="5" value="{{cliente?.strObs}}" #txtObservacoes></ion-textarea>
+        </ion-item>
+      </div>
+      <!--  <hr  style="opacity: 0.65;border-bottom: 0.5px solid rgba(31, 206, 179, 0.65);margin-top: 40px;"> -->
+      <div id="marcacoes">
+        <ion-card *ngFor="let marcacao of marcacoes" style="margin: 40px;    background: transparent;">
+
+          <ion-card-header style="padding: 0px;">
+            <ion-row>
+              <ion-col size="6" class="categoryLabel" style="padding: 0px; text-align: left;">
+                {{marcacao.strClientName}}
+              </ion-col>
+              <ion-col size="6" style="padding: 0px; text-align: right;">
+                <ion-row>
+                  <ion-col size="8">
+                    <p class="descTime">{{marcacao.strDate}}</p>
+                  </ion-col>
+                  <ion-col size="4">
+                    <p class="descTime">{{marcacao.strHour}}</p>
+                  </ion-col>
+                </ion-row>
+
               </ion-col>
             </ion-row>
 
-          </ion-col>
-        </ion-row>
 
 
+          </ion-card-header>
+          <hr style="background: #FF686B;margin: 0px;">
+          <ion-row>
+            <p
+              style="font-style: normal;font-weight: 500;font-size: 14px;line-height: 18px;color: #313131;margin-top: 0px;">
+              <b>{{marcacao.strService}}</b></p>
+          </ion-row>
 
-      </ion-card-header>
-      <hr style="background: #FF686B;margin: 0px;">
-      <ion-row>
-        <p
-          style="font-style: normal;font-weight: 500;font-size: 14px;line-height: 18px;color: #313131;margin-top: 0px;">
-          <b>{{marcacao.strService}}</b></p>
-      </ion-row>
+          <ion-row>
+            <p style="color: #313131;">Observações: {{marcacao.strObs}}</p>
+          </ion-row>
 
-      <ion-row>
-        <p style="color: #313131;">Observações: {{marcacao.strObs}}</p>
-      </ion-row>
-
-    </ion-card>
+        </ion-card>
+      </div>
   </div>
-
 </ion-content>
 
 <ion-footer class="ion-no-border" no-border no-shadow

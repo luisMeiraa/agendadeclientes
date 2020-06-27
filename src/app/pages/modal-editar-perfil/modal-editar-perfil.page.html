@@ -19,37 +19,22 @@
       </ion-item>
 
       <ion-item>
-        <ion-label class="label" position="floating">Email</ion-label>
+        <ion-label type="email"class="label" position="floating">Email</ion-label>
         <ion-input #strEmail clearInput></ion-input>
       </ion-item>
 
 
-      <!--   <ion-item>
+      <ion-item>
         <ion-label class="label" position="floating">Password</ion-label>
-        <ion-input type="password"#strPassword></ion-input>
+       <ion-input type="password" #strPassword clearInput></ion-input>
       </ion-item>
 
       <ion-item>
-        <ion-label class="label" position="floating">Repita a palavra-passe</ion-label>
-        <ion-input type="password"#confPass></ion-input>
-      </ion-item> -->
-    </ion-list>
-    <div>
-      <ion-item lines=none (click)="editPassword()">
-        <ion-label style="font-size: 11px;">Queres editar a tua Password?</ion-label>
-        <ion-icon name="chevron-down-outline"></ion-icon>
+        <ion-label class="label" position="floating">Repete a password</ion-label>
+        <ion-input type="password" #confPass clearInput></ion-input>
       </ion-item>
-      <div id="editPassword" style="display: none;">
-        <ion-item>
-          <ion-label position="floating">Password</ion-label>
-         <ion-input type="password" #strPassword></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label position="floating">Repete a password</ion-label>
-          <ion-input type="password" #confPass></ion-input>
-        </ion-item>
-      </div>
-    </div>
+    </ion-list>
+  
   </div>
 
 </ion-content>

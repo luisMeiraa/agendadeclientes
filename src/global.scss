@@ -28,7 +28,11 @@
 @import url(https://fonts.googleapis.com/css2?family=PT+Sans&display=swap);
 
 $font-family-base: "Oxygen", sans-serif !default;
-
+ion-footer {
+  &.footer-md::before {
+    background-image: none;
+  }
+}
 ion-button{
     --background: #94bbe9;
     font-style: normal;

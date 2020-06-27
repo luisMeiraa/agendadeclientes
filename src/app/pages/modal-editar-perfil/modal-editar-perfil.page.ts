@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ModalController, NavParams } from '@ionic/angular';
+import { ModalController, NavParams, AlertController } from '@ionic/angular';
 import { ApiService } from 'src/app/services/api.service';
 
 @Component({
@@ -13,7 +13,7 @@ export class ModalEditarPerfilPage implements OnInit {
   @ViewChild('strName', null) strName: any;
   @ViewChild('strPassword', null) strPassword: any;
   @ViewChild('confPass', null) confPass: any;
-  constructor(public modalController: ModalController, private navParams:NavParams, private webservice: ApiService,) { }
+  constructor(public modalController: ModalController, private navParams:NavParams, private webservice: ApiService,public alertController: AlertController) { }
 
   ngOnInit() {
       this.user = this.navParams.get("user");
@@ -27,9 +27,52 @@ export class ModalEditarPerfilPage implements OnInit {
      
     });
   }
-  saveEditUser(){
+ async saveEditUser(){
+
     this.user.strEmail = this.strEmail.value;
     this.user.strName =  this.strName.value;
+    
+
+    if(  this.user.strName == ''){
+      const alert = await this.alertController.create({
+        header: 'Atenção',
+        message: 'O teu nome está incorreto.',
+        buttons: ['OK']
+      });
+
+      await alert.present();
+      return;
+    }
+
+    if( this.strPassword.value !=  this.confPass.value) {
+      const alert = await this.alertController.create({
+        header: 'Atenção',
+        message: 'As passwords não coincidem.',
+        buttons: ['OK']
+      });
+  
+      await alert.present();
+      return;
+    }
+
+    if(!this.user.strEmail.includes("@" && ".")){
+      const alert = await this.alertController.create({
+        header: 'Atenção',
+        message: 'O teu email está incorreto.',
+        buttons: ['OK']
+      });
+  
+      await alert.present();
+      return;
+    }
+   
+    if(this.strPassword.value != ''){
+      console.log("fa");
+      this.user.strPassword =  this.strPassword.value;
+
+    }
+
+
     this.webservice.updateUser(this.user).then(data=>{
       console.log(data);
     })

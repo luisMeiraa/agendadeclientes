@@ -1,12 +1,17 @@
-<!-- <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Tab 2
-    </ion-title>
-  </ion-toolbar> 
-</ion-header>-->
+<ion-header no-border no-shadow mode="ios">
+  <ion-toolbar color="primary" style="--border-width: 0 0 0px !important;">
+    <ion-buttons slot="start">
+    </ion-buttons>
+    <ion-title>Agenda</ion-title>
+  </ion-toolbar>
+</ion-header>  
 
 <ion-content [fullscreen]="true">
+  <div>
+
+  </div>
+
+
   <ion-row style="margin: 20px;">
     <ion-col size="4" style="text-align: left;">
       <ion-button fill="clear" (click)="back()"style="--background: transparent;">
@@ -47,14 +52,15 @@
 
 
  
-  <ion-item-sliding  lines="none" *ngFor="let marcacao of marcacoes">
+  <ion-item-sliding  lines="none" *ngFor="let marcacao of marcacoes" >
+    <ion-text></ion-text>
     <ion-item-options side="start"> 
       <ion-item-option (click)="deleteAppointment(marcacao)">
         <ion-icon style=" border: 1px solid;border-radius: 50%;font-size: 35px;"color="danger" name="close-outline"></ion-icon>
       </ion-item-option>
-      <ion-item-option>
+     <!--  <ion-item-option>
         <ion-icon style=" border: 1px solid;border-radius: 50%;font-size: 35px;"name="pencil-outline" color="dark"></ion-icon></ion-item-option>
-     
+      -->
     </ion-item-options>
     
     <ion-item  lines="none" style="width: 100%;">
